@@ -11,8 +11,8 @@ import Slide3Mob from "@/public/images/slide-3-mob.jpg"
 import Slide4Mob from "@/public/images/slide-4-mob.jpg"
 import Slide5Mob from "@/public/images/slide-5-mob.jpg"
 import Image from "next/image";
-import {useContext, useEffect, useState} from "react";
-import {Context} from "@/context/Context";
+import { useContext, useEffect, useState } from "react";
+import { Context } from "@/context/Context";
 import { useSwipeable } from 'react-swipeable';
 
 export const Hero = () => {
@@ -37,8 +37,8 @@ export const Hero = () => {
     });
     useEffect(() => {
         const handleResize = () => {
-            const isMdAndUp = window.innerWidth > 640;
-            setHeroContainerHeight({height: isMdAndUp ? 'auto' : 'calc(100% - 28px)'});
+            const isMdAndUp = window.innerWidth > 1024;
+            setHeroContainerHeight({height: isMdAndUp ? '' : 'calc(100% - 28px)'});
         };
 
         // Добавьте обработчик события при монтировании компонента
@@ -88,10 +88,9 @@ export const Hero = () => {
             <div
                 style={heroContainerHeight}
                 className="
-                    sm:h-auto
-                    h-[calc(100% - 28px)]
                     w-full
-                    sm:my-auto
+                    lg:my-auto
+                    sm:mt-72
                     flex
                     relative
                     flex-col
@@ -99,9 +98,13 @@ export const Hero = () => {
             >
                 <div className="
                     flex
+                    lg:flex-col
+                    sm:flex-row
                     flex-col
-                    sm:w-[436px]
-                    sm:mx-20
+                    xl:w-[436px]
+                    sm:w-[320px]
+                    lg:mx-10
+                    xl:mx-20
                     mx-4
                     sm:my-auto
                     mt-16
@@ -120,23 +123,30 @@ export const Hero = () => {
                         font-extrabold
                         sm:text-start
                         min-h-[144px]
+                        sm:mr-4
+                        sm:min-w-[360px]
                     "
                     >
                         {titles[currentSlide - 1]}
                     </h1>
-                    <p className="
+                    <div
+                        className="
+                            h-max
+                        "
+                    >
+                        <p className="
                         text-sm
                         font-normal
                         leading-7
-                        sm:mb-14
+                        lg:mb-14
                         mb-4
                         text-center
                         sm:text-start
                     "
-                    >
-                        {descriptions[currentSlide -1]}
-                    </p>
-                    <button className="
+                        >
+                            {descriptions[currentSlide -1]}
+                        </p>
+                        <button className="
                         sm:w-[280px]
                         w-full
                         h-14
@@ -151,10 +161,11 @@ export const Hero = () => {
                         mb-8
                         sm:mb-o
                     "
-                    >
-                        Try first
-                        <FiArrowRight size={24} className='ml-1' />
-                    </button>
+                        >
+                            Try first
+                            <FiArrowRight size={24} className='ml-1' />
+                        </button>
+                    </div>
                     <Image
                         {...handlerSwipe}
                         src={slidesMob[currentSlide -1]}
@@ -167,7 +178,7 @@ export const Hero = () => {
                         border-[7px]
                         border-slide-gray
                         rounded-[14px]
-                        lg:hidden
+                        sm:hidden
                         mx-auto
                     "
                     />
@@ -191,11 +202,12 @@ export const Hero = () => {
                         absolute
                         right-0
                         top-0
-                        -translate-y-[15%]
+                        lg:-translate-y-[15%]
+                        sm:translate-y-2/3
                         h-auto
                         w-[56%]
                         hidden
-                        lg:block
+                        sm:block
                         max-w-[900px]
                     "
                 >
@@ -230,8 +242,6 @@ export const Hero = () => {
                                 border-[7px]
                                 border-slide-gray
                                 rounded-[14px]
-                                hidden
-                                lg:block
                             "
                         />
                     </div>
