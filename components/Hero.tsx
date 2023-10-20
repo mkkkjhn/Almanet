@@ -1,47 +1,144 @@
 'use client'
 import { FiArrowRight } from "react-icons/fi";
 import Slide1Desc from "@/public/images/slide-1-desc.jpg"
+import Slide2Desc from "@/public/images/slide-2-desc.jpg"
+import Slide3Desc from "@/public/images/slide-3-desc.jpg"
+import Slide4Desc from "@/public/images/slide-4-desc.jpg"
+import Slide5Desc from "@/public/images/slide-5-desc.jpg"
 import Slide1Mob from "@/public/images/slide-1-mob.jpg"
+import Slide2Mob from "@/public/images/slide-2-mob.jpg"
+import Slide3Mob from "@/public/images/slide-3-mob.jpg"
+import Slide4Mob from "@/public/images/slide-4-mob.jpg"
+import Slide5Mob from "@/public/images/slide-5-mob.jpg"
 import Image from "next/image";
+import {useContext, useEffect, useState} from "react";
+import {Context} from "@/context/Context";
+import { useSwipeable } from 'react-swipeable';
 
 export const Hero = () => {
+    const slidesDesc = [Slide1Desc, Slide2Desc, Slide3Desc, Slide4Desc, Slide5Desc]
+    const slidesMob = [Slide1Mob, Slide2Mob, Slide3Mob, Slide4Mob, Slide5Mob]
+    const titles = [
+        'Seychelles\` first social platform',
+        'CreoleTrade Bulletin Board',
+        'Almanet News Feed',
+        'Event reviews and photo reports',
+        'Partners'
+    ]
+    const descriptions = [
+        'Track events, socialize and use the message board for your life and business.',
+        'Your place to buy and sell: whether it\'s an old car or renting an apartment. Easier and faster!',
+        'Discover a world of local news, talk about events in your neighborhood and share service reviews.',
+        'Capture the beauty of Seychelles and share spectacular moments with our community.',
+        'Order a review or report from Almanet, advertise and find your audience on our platform.'
+    ]
+    const [heroContainerHeight, setHeroContainerHeight] = useState({
+        height: ''
+    });
+    useEffect(() => {
+        const handleResize = () => {
+            const isMdAndUp = window.innerWidth > 640;
+            setHeroContainerHeight({height: isMdAndUp ? 'auto' : 'calc(100% - 28px)'});
+        };
+
+        // Добавьте обработчик события при монтировании компонента
+        window.addEventListener('resize', handleResize);
+
+        // Уберите обработчик события при размонтировании компонента
+        return () => {
+            window.removeEventListener('resize', handleResize);
+        };
+    }, []);
+
+    const context = useContext(Context)
+    if (!context) {
+        throw new Error('Context undefined')
+    }
+    const { currentSlide, setCurrentSlide } = context;
+
+    const handlerSwipe = useSwipeable({
+        onSwiped: (eventData) => {
+            const { dir } = eventData
+            if (dir === 'Left') {
+                incrementCurrentSlide()
+            } else {
+                decrementCurrentSlide()
+            }
+
+        }
+    });
+
+    const incrementCurrentSlide = () => {
+        if (currentSlide !== 5) {
+            setCurrentSlide(currentSlide + 1)
+        } else {
+            setCurrentSlide(1)
+        }
+    }
+    const decrementCurrentSlide = () => {
+        if (currentSlide !== 1) {
+            setCurrentSlide(currentSlide - 1)
+        } else {
+            setCurrentSlide(5)
+        }
+    }
 
     return (
         <>
-            <div className='
-                h-max
-                w-full
-                my-auto
-                flex
-                relative
-            '
+            <div
+                style={heroContainerHeight}
+                className="
+                    sm:h-auto
+                    h-[calc(100% - 28px)]
+                    w-full
+                    sm:my-auto
+                    flex
+                    relative
+                    flex-col
+                "
             >
-                <div className='
+                <div className="
                     flex
                     flex-col
-                    w-[436px]
-                    mx-20
-                    my-28
+                    sm:w-[436px]
+                    sm:mx-20
+                    mx-4
+                    sm:my-auto
+                    mt-16
                     relative
-                '
+                    h-full
+                "
                 >
-                    <h1 className='
+                    <h1 className="
                         mb-4
-                    '
+                        sm:min-h-[192px]
+                        text-center
+                        sm:text-[56px]
+                        text-[40px]
+                        sm:leading-[64px]
+                        leading-[48px]
+                        font-extrabold
+                        sm:text-start
+                        min-h-[144px]
+                    "
                     >
-                        Seychelles` first social platform
+                        {titles[currentSlide - 1]}
                     </h1>
-                    <p className='
+                    <p className="
                         text-sm
                         font-normal
                         leading-7
-                        mb-14
-                    '
+                        sm:mb-14
+                        mb-4
+                        text-center
+                        sm:text-start
+                    "
                     >
-                        Description description description description description description description description
+                        {descriptions[currentSlide -1]}
                     </p>
-                    <button className='
-                        w-[280px]
+                    <button className="
+                        sm:w-[280px]
+                        w-full
                         h-14
                         rounded-lg
                         bg-green
@@ -49,12 +146,32 @@ export const Hero = () => {
                         flex
                         justify-center
                         items-center
-                    '
+                        hover:opacity-80
+                        transition
+                        mb-8
+                        sm:mb-o
+                    "
                     >
                         Try first
                         <FiArrowRight size={24} className='ml-1' />
                     </button>
-                    <div className='
+                    <Image
+                        {...handlerSwipe}
+                        src={slidesMob[currentSlide -1]}
+                        alt="Mobile version"
+                        style={{ height: 'calc(100% - 272px)' }}
+                        className="
+                        w-auto
+                        -bottom-5
+                        right-[716px]
+                        border-[7px]
+                        border-slide-gray
+                        rounded-[14px]
+                        lg:hidden
+                        mx-auto
+                    "
+                    />
+                    <div className="
                         absolute
                         w-[360px]
                         h-[360px]
@@ -63,40 +180,62 @@ export const Hero = () => {
                         rounded-[95px]
                         bg-yellow
                         z-[-1]
-                        top-[-126px]
+                        sm:top-[-126px]
+                        top-[14px]
                         left-[-140px]
-                    '
+                    "
                     />
                 </div>
-                <Image
-                    src={Slide1Desc}
-                    alt="Desctop version"
+                <div
                     className="
                         absolute
-                        h-[600px]
-                        w-auto
                         right-0
-                        -bottom-2
-                        rounded-l-2xl
-                        border-slide-gray-light
-                        border-y-4
-                        border-l-4
+                        top-0
+                        -translate-y-[15%]
+                        h-auto
+                        w-[56%]
+                        hidden
+                        lg:block
+                        max-w-[900px]
                     "
-                />
-                <Image
-                    src={Slide1Mob}
-                    alt="Mobile version"
-                    className="
-                        absolute
-                        h-[320px]
-                        w-auto
-                        -bottom-5
-                        right-[716px]
-                        border-[7px]
-                        border-slide-gray
-                        rounded-[14px]
-                    "
-                />
+                >
+                    <div
+                        className="
+                            w-full
+                            h-full
+                            relative
+                        "
+                    >
+                        <Image
+                            src={slidesDesc[currentSlide - 1]}
+                            alt="Desctop version"
+                            className="
+                                h-full
+                                w-full
+                                rounded-l-2xl
+                                border-slide-gray-light
+                                border-y-4
+                                border-l-4
+                            "
+                        />
+                        <Image
+                            src={slidesMob[currentSlide -1]}
+                            alt="Mobile version"
+                            className="
+                                absolute
+                                h-[48%]
+                                w-auto
+                                -bottom-4
+                                -left-16
+                                border-[7px]
+                                border-slide-gray
+                                rounded-[14px]
+                                hidden
+                                lg:block
+                            "
+                        />
+                    </div>
+                </div>
             </div>
         </>
     );

@@ -7,11 +7,10 @@ interface MyProviderProps {
 }
 
 const Provider: React.FC<MyProviderProps> = ({ children }) => {
-    const [slides, setSlides] = useState<number[]>([])
     const [currentSlide, setCurrentSlide] = useState(1)
 
     return (
-        <Context.Provider value={{ slides, setSlides, currentSlide, setCurrentSlide }}>
+        <Context.Provider value={{ currentSlide, setCurrentSlide }}>
             {children}
         </Context.Provider>
     );
