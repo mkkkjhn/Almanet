@@ -35,10 +35,15 @@ export const Hero = () => {
     const [heroContainerHeight, setHeroContainerHeight] = useState({
         height: ''
     });
+    const [textContainerHeight, setTextContainerHeight] = useState({
+        height: 'calc(100% - 339px)'
+    });
     useEffect(() => {
         const handleResize = () => {
             const isMdAndUp = window.innerWidth > 1024;
-            setHeroContainerHeight({height: isMdAndUp ? '' : 'calc(100% - 124px)'});
+            setHeroContainerHeight({height: isMdAndUp ? '' : 'calc(100% - 124px)'})
+            setTextContainerHeight({height: isMdAndUp ? '' : 'calc(100% - 291px)'})
+
         };
 
         // Добавьте обработчик события при монтировании компонента
@@ -131,7 +136,8 @@ export const Hero = () => {
                                 text-[40px]
                                 leading-[48px]
                                 font-extrabold
-                                mb-4
+                                sm:mb-4
+                                mb-2
                                 mt-2
                                 sm:mt-0
                                 flex
@@ -146,7 +152,8 @@ export const Hero = () => {
                             className="
                                 text-sm
                                 font-normal
-                                mb-14
+                                sm:mb-14
+                                mb-4
                             "
                         >
                             {descriptions[currentSlide -1]}
@@ -173,7 +180,7 @@ export const Hero = () => {
                             {...handlerSwipe}
                             src={slidesMob[currentSlide -1]}
                             alt="Mobile version"
-                            style={{ height: 'calc(100% - 339px)' }}
+                            style={textContainerHeight}
                             className="
                                 sm:hidden
                                 w-auto
