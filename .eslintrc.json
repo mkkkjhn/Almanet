@@ -1,10 +1,6 @@
 {
   "extends": [
-    "plugin:@typescript-eslint/recommended",
-    "plugin:import/typescript",
-    "@nuxtjs/eslint-config-typescript"
   ],
-  "plugins": ["@typescript-eslint", "import"],
   "rules": {
     "arrow-parens": "off",
     "no-alert": "off",

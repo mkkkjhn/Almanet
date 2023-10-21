@@ -89,132 +89,92 @@ export const Hero = () => {
                 style={heroContainerHeight}
                 className="
                     w-full
-                    lg:my-auto
-                    sm:mt-72
+                    h-full
                     flex
-                    relative
-                    flex-col
+                    justify-between
                 "
             >
-                <div className="
-                    flex
-                    lg:flex-col
-                    sm:flex-row
-                    flex-col
-                    xl:w-[436px]
-                    sm:w-[320px]
-                    lg:mx-10
-                    xl:mx-20
-                    mx-4
-                    sm:my-auto
-                    mt-16
-                    relative
-                    h-full
-                "
-                >
-                    <h1 className="
-                        mb-4
-                        sm:min-h-[192px]
-                        text-center
-                        sm:text-[56px]
-                        text-[40px]
-                        sm:leading-[64px]
-                        leading-[48px]
-                        font-extrabold
-                        sm:text-start
-                        min-h-[144px]
-                        sm:mr-4
-                        sm:min-w-[360px]
+                <div
+                    className="
+                        h-2/3
+                        w-[40%]
+                        my-auto
+                        flex
+                        flex-col
                     "
-                    >
-                        {titles[currentSlide - 1]}
-                    </h1>
+                >
                     <div
                         className="
-                            h-max
+                            h-full
                         "
                     >
-                        <p className="
-                        text-sm
-                        font-normal
-                        leading-7
-                        lg:mb-14
-                        mb-4
-                        text-center
-                        sm:text-start
-                    "
+                        <h1
+                            className="
+                            text-[56px]
+                            font-extrabold
+                            leading-[64px]
+                            mb-4
+                        "
                         >
-                            {descriptions[currentSlide -1]}
-                        </p>
-                        <button className="
-                        sm:w-[280px]
-                        w-full
-                        h-14
-                        rounded-lg
-                        bg-green
-                        text-white
-                        flex
-                        justify-center
-                        items-center
-                        hover:opacity-80
-                        transition
-                        mb-8
-                        sm:mb-o
-                    "
+                            {titles[currentSlide - 1]}
+                        </h1>
+                        <div
+                            className="
+                            h-full
+                        "
                         >
-                            Try first
-                            <FiArrowRight size={24} className='ml-1' />
-                        </button>
+                            <p
+                                className="
+                                text-sm
+                                font-normal
+                                mb-14
+                            "
+                            >
+                                {descriptions[currentSlide -1]}
+                            </p>
+                            <button
+                                className="
+                                w-[280px]
+                                h-14
+                                bg-green
+                                text-white
+                                flex
+                                justify-center
+                                items-center
+                                rounded-lg
+                            "
+                            >
+                                Try first
+                                <FiArrowRight size={24} className='ml-1' />
+                            </button>
+                        </div>
+                        <Image
+                            {...handlerSwipe}
+                            src={slidesMob[currentSlide -1]}
+                            alt="Mobile version"
+                            style={{ height: 'calc(100% - 272px)' }}
+                            className="
+                            sm:hidden
+                        "
+                        />
+                        <div className="
+
+                    "
+                        />
                     </div>
-                    <Image
-                        {...handlerSwipe}
-                        src={slidesMob[currentSlide -1]}
-                        alt="Mobile version"
-                        style={{ height: 'calc(100% - 272px)' }}
-                        className="
-                        w-auto
-                        -bottom-5
-                        right-[716px]
-                        border-[7px]
-                        border-slide-gray
-                        rounded-[14px]
-                        sm:hidden
-                        mx-auto
-                    "
-                    />
-                    <div className="
-                        absolute
-                        w-[360px]
-                        h-[360px]
-                        transform
-                        rotate-[64.09deg]
-                        rounded-[95px]
-                        bg-yellow
-                        z-[-1]
-                        sm:top-[-126px]
-                        top-[14px]
-                        left-[-140px]
-                    "
-                    />
                 </div>
                 <div
                     className="
-                        absolute
-                        right-0
-                        top-0
-                        lg:-translate-y-[15%]
-                        sm:translate-y-2/3
-                        h-auto
-                        w-[56%]
-                        hidden
-                        sm:block
-                        max-w-[900px]
+                        h-2/3
+                        w-[60%]
+                        my-auto
                     "
                 >
                     <div
                         className="
-                            w-full
-                            h-full
+                            w-auto
+                            h-auto
+                            max-h-full
                             relative
                         "
                     >
@@ -224,6 +184,7 @@ export const Hero = () => {
                             className="
                                 h-full
                                 w-full
+                                max-h-full
                                 rounded-l-2xl
                                 border-slide-gray-light
                                 border-y-4
