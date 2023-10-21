@@ -3,7 +3,6 @@ import Image from "next/image";
 import { useContext, useEffect, useState } from "react";
 import { FiArrowRight } from "react-icons/fi";
 import { useSwipeable } from 'react-swipeable';
-// eslint-disable-next-line import/extensions
 import { Context } from "@/context/Context";
 import Slide1Desc from "@/public/images/slide-1-desc.jpg";
 import Slide1Mob from "@/public/images/slide-1-mob.jpg";
@@ -20,7 +19,7 @@ export const Hero = () => {
     const slidesDesc = [Slide1Desc, Slide2Desc, Slide3Desc, Slide4Desc, Slide5Desc];
     const slidesMob = [Slide1Mob, Slide2Mob, Slide3Mob, Slide4Mob, Slide5Mob];
     const titles = [
-        'Seychelles\` first social platform',
+        'Seychelles` first social platform',
         'CreoleTrade Bulletin Board',
         'Almanet News Feed',
         'Event reviews and photo reports',

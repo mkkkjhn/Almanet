@@ -2,7 +2,6 @@
 import {useContext} from "react";
 import { FiArrowLeft } from "react-icons/fi";
 import { FiArrowRight } from "react-icons/fi";
-// eslint-disable-next-line import/extensions
 import { Context } from "@/context/Context";
 
 export const Controls = () => {
