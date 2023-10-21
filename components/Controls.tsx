@@ -1,29 +1,30 @@
-'use client'
+'use client';
 import {useContext} from "react";
-import { Context } from "@/context/Context";
 import { FiArrowLeft } from "react-icons/fi";
 import { FiArrowRight } from "react-icons/fi";
+// eslint-disable-next-line import/extensions
+import { Context } from "@/context/Context";
 
 export const Controls = () => {
-    const context = useContext(Context)
+    const context = useContext(Context);
     if (!context) {
-        throw new Error('Context undefined')
+        throw new Error('Context undefined');
     }
     const { currentSlide, setCurrentSlide } = context;
     const incrementCurrentSlide = () => {
         if (currentSlide !== 5) {
-            setCurrentSlide(currentSlide + 1)
+            setCurrentSlide(currentSlide + 1);
         } else {
-            setCurrentSlide(1)
+            setCurrentSlide(1);
         }
-    }
+    };
     const decrementCurrentSlide = () => {
         if (currentSlide !== 1) {
-            setCurrentSlide(currentSlide - 1)
+            setCurrentSlide(currentSlide - 1);
         } else {
-            setCurrentSlide(5)
+            setCurrentSlide(5);
         }
-    }
+    };
 
     return (
         <>

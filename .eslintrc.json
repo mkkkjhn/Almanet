@@ -1,101 +1,22 @@
 {
-  "extends": [
-    "next/core-web-vitals"
-  ],
-  "rules": {
-    "arrow-parens": "off",
-    "no-alert": "off",
-    "no-console": "off",
-    "operator-linebreak": "off",
-    "max-len": [
-      "error",
-      {
-        "code": 180,
-        "tabWidth": 1,
-        "ignoreComments": true,
-        "ignorePattern": "d=\"([\\s\\S]*?)\"",
-        "ignoreUrls": true,
-        "ignoreStrings": true,
-        "ignoreTemplateLiterals": true
-      }
-    ],
-    "vue/multi-word-component-names": "off",
-    "semi": ["error", "always"],
-    "semi-style": ["error", "last"],
-    "no-nested-ternary": 0,
-    "no-useless-constructor": 0,
-    "no-throw-literal": 0,
-    "max-classes-per-file": 0,
-    "default-case": 0,
-    "comma-dangle": [
-      "error",
-      "never"
-    ],
-    "global-require": 0,
-    "import/no-unresolved": "off",
-    "import/no-dynamic-require": "off",
-    "import/prefer-default-export": "off",
-    "import/no-named-default": 0,
-    "import/extensions": [
-      "error",
-      "ignorePackages",
-      {
-        "js": "never",
-        "jsx": "never",
-        "ts": "never",
-        "tsx": "never"
-      }
-    ],
-    "indent": ["error", 4, { "SwitchCase": 1 }],
-    "vue/html-indent": ["error", 4, { "baseIndent": 1 }],
-    "@typescript-eslint/ban-ts-comment": 0,
-    "@typescript-eslint/no-unused-vars": "error",
-    "@typescript-eslint/no-var-requires": 0,
-    "@typescript-eslint/no-explicit-any": 0,
-    "@typescript-eslint/no-empty-function": 0,
-    "react-hooks/exhaustive-deps": 0,
-    "class-methods-use-this": 0,
-    "import/order": [
-      "error",
-      {
-        "groups": ["builtin", "external", "internal", "parent", "sibling"],
-        "alphabetize": {
-          "order": "asc",
-          "caseInsensitive": true
-        }
-      }
-    ]
-  },
-  "settings": {
-    "import/parsers": {
-      "@typescript-eslint/parser": [
-        ".ts",
-        ".tsx",
-        ".js",
-        ".jsx"
-      ]
+    "env": {
+        "browser": true,
+        "es2021": true
     },
-    "import/internal-regex": "^@",
-    "import/resolver": {
-      "eslint-import-resolver-custom-alias": {
-        "alias": {
-          "@/*": "./*"
-        },
-        "extensions": [
-          ".ts",
-          ".tsx",
-          ".js",
-          ".jsx"
-        ]
-      },
-      "node": {
-        "extensions": [
-          ".ts",
-          ".tsx",
-          ".js",
-          ".jsx"
-        ]
-      }
+    "extends": [
+        "eslint:recommended",
+        "plugin:@typescript-eslint/recommended",
+        "plugin:react/recommended"
+    ],
+    "parser": "@typescript-eslint/parser",
+    "parserOptions": {
+        "ecmaVersion": "latest",
+        "sourceType": "module"
+    },
+    "plugins": [
+        "@typescript-eslint",
+        "react"
+    ],
+    "rules": {
     }
-  }
 }
