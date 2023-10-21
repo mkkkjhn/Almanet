@@ -118,6 +118,7 @@ export const Hero = () => {
                             text-center
                             xl:items-start
                             items-center
+                            relative
                         "
                     >
                         <div
@@ -143,27 +144,27 @@ export const Hero = () => {
                         </div>
                         <p
                             className="
-                                    text-sm
-                                    font-normal
-                                    mb-14
-                                "
+                                text-sm
+                                font-normal
+                                mb-14
+                            "
                         >
                             {descriptions[currentSlide -1]}
                         </p>
                         <button
                             className="
-                                    xl:w-[280px]
-                                    w-full
-                                    h-14
-                                    bg-green
-                                    text-white
-                                    flex
-                                    justify-center
-                                    items-center
-                                    rounded-lg
-                                    sm:mb-0
-                                    mb-6
-                                "
+                                xl:w-[280px]
+                                w-full
+                                h-14
+                                bg-green
+                                text-white
+                                flex
+                                justify-center
+                                items-center
+                                rounded-lg
+                                sm:mb-0
+                                mb-6
+                            "
                         >
                             Try first
                             <FiArrowRight size={24} className='ml-1' />
@@ -181,9 +182,25 @@ export const Hero = () => {
                                 rounded-[14px]
                             "
                         />
-                        <div className="
-
-                        "
+                        <div
+                            className="
+                                absolute
+                                w-[360px]
+                                h-[360px]
+                                sm:w-[400px]
+                                sm:h-[400px]
+                                transform
+                                rotate-[64.09deg]
+                                rounded-[95px]
+                                bg-yellow
+                                z-[-1]
+                                sm:top-[-140px]
+                                top-[14px]
+                                left-[-140px]
+                                sm:left-[-182px]
+                                sm:hidden
+                                xl:block
+                            "
                         />
                     </div>
                 </div>
@@ -216,10 +233,12 @@ export const Hero = () => {
                                 w-full
                                 h-full
                                 xl:rounded-l-2xl
+                                xl:rounded
                                 rounded-2xl
                                 border-slide-gray-light
                                 xl:border-y-4
                                 xl:border-l-4
+                                xl:border-0
                                 border-4
                             "
                             />
