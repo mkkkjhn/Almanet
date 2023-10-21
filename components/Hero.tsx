@@ -40,9 +40,11 @@ export const Hero = () => {
     });
     useEffect(() => {
         const handleResize = () => {
-            const isMdAndUp = window.innerWidth > 1024;
-            setHeroContainerHeight({height: isMdAndUp ? '' : 'calc(100% - 124px)'});
-            setTextContainerHeight({height: isMdAndUp ? '' : 'calc(100% - 291px)'});
+            const isLgAndUp = window.innerWidth > 1024;
+            const isXxs = window.innerWidth < 400 && window.innerHeight < 800
+            setHeroContainerHeight({height: isLgAndUp ? '' : 'calc(100% - 124px)'});
+            setTextContainerHeight({height: isLgAndUp ? '' : 'calc(100% - 291px)'});
+            if (isXxs) setHeroContainerHeight({height: 'max-content'})
 
         };
 
@@ -94,7 +96,7 @@ export const Hero = () => {
                 style={heroContainerHeight}
                 className="
                     w-full
-                    h-full
+                    h-max
                     flex
                     items-center
                     xl:flex-row
@@ -110,7 +112,7 @@ export const Hero = () => {
                         items-center
                         xl:mb-0
                         sm:mb-8
-                        h-full
+                        h-max
                         sm:h-auto
                     "
                 >
@@ -124,6 +126,7 @@ export const Hero = () => {
                             xl:items-start
                             items-center
                             relative
+                            xl:min-h-[360px]
                         "
                     >
                         <div
@@ -142,6 +145,7 @@ export const Hero = () => {
                                 sm:mt-0
                                 flex
                                 items-center
+                                justify-center
                             "
                         >
                             <h1>
@@ -187,6 +191,7 @@ export const Hero = () => {
                                 border-[7px]
                                 border-slide-gray
                                 rounded-[14px]
+                                min-h-[363px]
                             "
                         />
                         <div
