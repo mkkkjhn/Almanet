@@ -38,7 +38,7 @@ export const Hero = () => {
     useEffect(() => {
         const handleResize = () => {
             const isMdAndUp = window.innerWidth > 1024;
-            setHeroContainerHeight({height: isMdAndUp ? '' : 'calc(100% - 28px)'});
+            setHeroContainerHeight({height: isMdAndUp ? '' : 'calc(100% - 124px)'});
         };
 
         // Добавьте обработчик события при монтировании компонента
@@ -91,120 +91,153 @@ export const Hero = () => {
                     w-full
                     h-full
                     flex
-                    justify-between
+                    items-center
+                    xl:flex-row
+                    flex-col
                 "
             >
                 <div
                     className="
-                        h-2/3
-                        w-[40%]
-                        my-auto
-                        flex
-                        flex-col
+                        sm:w-[40%]
+                        mx-4
+                        sm:mx-0
+                        xl:px-20
+                        items-center
+                        xl:mb-0
+                        sm:mb-8
+                        h-full
+                        sm:h-auto
                     "
                 >
                     <div
                         className="
+                            flex
+                            flex-col
                             h-full
+                            xl:text-start
+                            text-center
+                            xl:items-start
+                            items-center
                         "
                     >
-                        <h1
-                            className="
-                            text-[56px]
-                            font-extrabold
-                            leading-[64px]
-                            mb-4
-                        "
-                        >
-                            {titles[currentSlide - 1]}
-                        </h1>
                         <div
                             className="
-                            h-full
-                        "
-                        >
-                            <p
-                                className="
-                                text-sm
-                                font-normal
-                                mb-14
-                            "
-                            >
-                                {descriptions[currentSlide -1]}
-                            </p>
-                            <button
-                                className="
-                                w-[280px]
-                                h-14
-                                bg-green
-                                text-white
+                                xl:text-[56px]
+                                xl:leading-[64px]
+                                sm:min-h-0
+                                min-w-[320px]
+                                min-h-[144px]
+                                text-[40px]
+                                leading-[48px]
+                                font-extrabold
+                                mb-4
+                                mt-2
+                                sm:mt-0
                                 flex
-                                justify-center
                                 items-center
-                                rounded-lg
                             "
-                            >
-                                Try first
-                                <FiArrowRight size={24} className='ml-1' />
-                            </button>
+                        >
+                            <h1>
+                                {titles[currentSlide - 1]}
+                            </h1>
                         </div>
+                        <p
+                            className="
+                                    text-sm
+                                    font-normal
+                                    mb-14
+                                "
+                        >
+                            {descriptions[currentSlide -1]}
+                        </p>
+                        <button
+                            className="
+                                    xl:w-[280px]
+                                    w-full
+                                    h-14
+                                    bg-green
+                                    text-white
+                                    flex
+                                    justify-center
+                                    items-center
+                                    rounded-lg
+                                    sm:mb-0
+                                    mb-6
+                                "
+                        >
+                            Try first
+                            <FiArrowRight size={24} className='ml-1' />
+                        </button>
                         <Image
                             {...handlerSwipe}
                             src={slidesMob[currentSlide -1]}
                             alt="Mobile version"
-                            style={{ height: 'calc(100% - 272px)' }}
+                            style={{ height: 'calc(100% - 339px)' }}
                             className="
-                            sm:hidden
-                        "
-                        />
-                        <div className="
-
-                    "
-                        />
-                    </div>
-                </div>
-                <div
-                    className="
-                        h-2/3
-                        w-[60%]
-                        my-auto
-                    "
-                >
-                    <div
-                        className="
-                            w-auto
-                            h-auto
-                            max-h-full
-                            relative
-                        "
-                    >
-                        <Image
-                            src={slidesDesc[currentSlide - 1]}
-                            alt="Desctop version"
-                            className="
-                                h-full
-                                w-full
-                                max-h-full
-                                rounded-l-2xl
-                                border-slide-gray-light
-                                border-y-4
-                                border-l-4
-                            "
-                        />
-                        <Image
-                            src={slidesMob[currentSlide -1]}
-                            alt="Mobile version"
-                            className="
-                                absolute
-                                h-[48%]
+                                sm:hidden
                                 w-auto
-                                -bottom-4
-                                -left-16
                                 border-[7px]
                                 border-slide-gray
                                 rounded-[14px]
                             "
                         />
+                        <div className="
+
+                        "
+                        />
+                    </div>
+                </div>
+                <div
+                    className="
+                        w-[60%]
+                        xl:pl-12
+                    "
+                >
+                    <div
+                        className="
+                            flex
+                            justify-end
+                        "
+                    >
+                        <div
+                            className="
+                            relative
+                            w-full
+                            max-w-[960px]
+                            h-auto
+                            sm:block
+                            hidden
+                        "
+                        >
+                            <Image
+                                src={slidesDesc[currentSlide - 1]}
+                                alt="Desctop version"
+                                className="
+                                w-full
+                                h-full
+                                xl:rounded-l-2xl
+                                rounded-2xl
+                                border-slide-gray-light
+                                xl:border-y-4
+                                xl:border-l-4
+                                border-4
+                            "
+                            />
+                            <Image
+                                src={slidesMob[currentSlide -1]}
+                                alt="Mobile version"
+                                className="
+                                absolute
+                                h-[48%]
+                                w-auto
+                                -bottom-4
+                                -left-12
+                                border-[7px]
+                                border-slide-gray
+                                rounded-[14px]
+                            "
+                            />
+                        </div>
                     </div>
                 </div>
             </div>

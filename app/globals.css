@@ -23,7 +23,7 @@ body,
 }
 
 body {
-  @apply overflow-hidden bg-bg-main
+  @apply overflow-x-hidden bg-bg-main
 }
 
 h1 {

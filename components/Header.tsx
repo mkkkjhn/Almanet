@@ -14,9 +14,7 @@ export const Header = () => {
                 justify-between
                 sm:px-20
                 px-4
-                sm:py-4
-                pt-5
-                fixed
+                py-4
             "
             >
                 <Image src={Logo} alt="Logo"></Image>
