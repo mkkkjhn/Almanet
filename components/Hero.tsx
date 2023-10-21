@@ -1,37 +1,38 @@
-'use client'
-import { FiArrowRight } from "react-icons/fi";
-import Slide1Desc from "@/public/images/slide-1-desc.jpg"
-import Slide2Desc from "@/public/images/slide-2-desc.jpg"
-import Slide3Desc from "@/public/images/slide-3-desc.jpg"
-import Slide4Desc from "@/public/images/slide-4-desc.jpg"
-import Slide5Desc from "@/public/images/slide-5-desc.jpg"
-import Slide1Mob from "@/public/images/slide-1-mob.jpg"
-import Slide2Mob from "@/public/images/slide-2-mob.jpg"
-import Slide3Mob from "@/public/images/slide-3-mob.jpg"
-import Slide4Mob from "@/public/images/slide-4-mob.jpg"
-import Slide5Mob from "@/public/images/slide-5-mob.jpg"
+'use client';
 import Image from "next/image";
 import { useContext, useEffect, useState } from "react";
-import { Context } from "@/context/Context";
+import { FiArrowRight } from "react-icons/fi";
 import { useSwipeable } from 'react-swipeable';
+// eslint-disable-next-line import/extensions
+import { Context } from "@/context/Context";
+import Slide1Desc from "@/public/images/slide-1-desc.jpg";
+import Slide1Mob from "@/public/images/slide-1-mob.jpg";
+import Slide2Desc from "@/public/images/slide-2-desc.jpg";
+import Slide2Mob from "@/public/images/slide-2-mob.jpg";
+import Slide3Desc from "@/public/images/slide-3-desc.jpg";
+import Slide3Mob from "@/public/images/slide-3-mob.jpg";
+import Slide4Desc from "@/public/images/slide-4-desc.jpg";
+import Slide4Mob from "@/public/images/slide-4-mob.jpg";
+import Slide5Desc from "@/public/images/slide-5-desc.jpg";
+import Slide5Mob from "@/public/images/slide-5-mob.jpg";
 
 export const Hero = () => {
-    const slidesDesc = [Slide1Desc, Slide2Desc, Slide3Desc, Slide4Desc, Slide5Desc]
-    const slidesMob = [Slide1Mob, Slide2Mob, Slide3Mob, Slide4Mob, Slide5Mob]
+    const slidesDesc = [Slide1Desc, Slide2Desc, Slide3Desc, Slide4Desc, Slide5Desc];
+    const slidesMob = [Slide1Mob, Slide2Mob, Slide3Mob, Slide4Mob, Slide5Mob];
     const titles = [
         'Seychelles\` first social platform',
         'CreoleTrade Bulletin Board',
         'Almanet News Feed',
         'Event reviews and photo reports',
         'Partners'
-    ]
+    ];
     const descriptions = [
         'Track events, socialize and use the message board for your life and business.',
         'Your place to buy and sell: whether it\'s an old car or renting an apartment. Easier and faster!',
         'Discover a world of local news, talk about events in your neighborhood and share service reviews.',
         'Capture the beauty of Seychelles and share spectacular moments with our community.',
         'Order a review or report from Almanet, advertise and find your audience on our platform.'
-    ]
+    ];
     const [heroContainerHeight, setHeroContainerHeight] = useState({
         height: ''
     });
@@ -41,8 +42,8 @@ export const Hero = () => {
     useEffect(() => {
         const handleResize = () => {
             const isMdAndUp = window.innerWidth > 1024;
-            setHeroContainerHeight({height: isMdAndUp ? '' : 'calc(100% - 124px)'})
-            setTextContainerHeight({height: isMdAndUp ? '' : 'calc(100% - 291px)'})
+            setHeroContainerHeight({height: isMdAndUp ? '' : 'calc(100% - 124px)'});
+            setTextContainerHeight({height: isMdAndUp ? '' : 'calc(100% - 291px)'});
 
         };
 
@@ -55,19 +56,19 @@ export const Hero = () => {
         };
     }, []);
 
-    const context = useContext(Context)
+    const context = useContext(Context);
     if (!context) {
-        throw new Error('Context undefined')
+        throw new Error('Context undefined');
     }
     const { currentSlide, setCurrentSlide } = context;
 
     const handlerSwipe = useSwipeable({
         onSwiped: (eventData) => {
-            const { dir } = eventData
+            const { dir } = eventData;
             if (dir === 'Left') {
-                incrementCurrentSlide()
+                incrementCurrentSlide();
             } else {
-                decrementCurrentSlide()
+                decrementCurrentSlide();
             }
 
         }
@@ -75,18 +76,18 @@ export const Hero = () => {
 
     const incrementCurrentSlide = () => {
         if (currentSlide !== 5) {
-            setCurrentSlide(currentSlide + 1)
+            setCurrentSlide(currentSlide + 1);
         } else {
-            setCurrentSlide(1)
+            setCurrentSlide(1);
         }
-    }
+    };
     const decrementCurrentSlide = () => {
         if (currentSlide !== 1) {
-            setCurrentSlide(currentSlide - 1)
+            setCurrentSlide(currentSlide - 1);
         } else {
-            setCurrentSlide(5)
+            setCurrentSlide(5);
         }
-    }
+    };
 
     return (
         <>
