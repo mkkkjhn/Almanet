@@ -96,7 +96,7 @@ export const Hero = () => {
                 style={heroContainerHeight}
                 className="
                     w-full
-                    h-max
+                    h-full
                     flex
                     items-center
                     xl:flex-row
