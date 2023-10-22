@@ -146,6 +146,7 @@ export const Hero = () => {
                                 flex
                                 items-center
                                 justify-center
+                                lg:justify-normal
                             "
                         >
                             <h1>
