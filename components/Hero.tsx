@@ -16,22 +16,41 @@ import Slide4Mob from '@/public/images/slide-4-mob.jpg';
 import Slide5Desc from '@/public/images/slide-5-desc.jpg';
 import Slide5Mob from '@/public/images/slide-5-mob.jpg';
 
-export const Hero = () => {
+interface HeroProps {
+    page: {
+        home: {
+            title1: string,
+            description1: string,
+            title2: string,
+            description2: string,
+            title3: string,
+            description3: string,
+            title4: string,
+            description4: string,
+            title5: string,
+            description5: string,
+            button: string,
+            privatePolicy: string
+        }
+    }
+}
+
+export const Hero = ({ page }: HeroProps) => {
     const slidesDesc = [Slide1Desc, Slide2Desc, Slide3Desc, Slide4Desc, Slide5Desc];
     const slidesMob = [Slide1Mob, Slide2Mob, Slide3Mob, Slide4Mob, Slide5Mob];
     const titles = [
-        'Seychelles` first social platform',
-        'CreoleTrade Bulletin Board',
-        'Almanet News Feed',
-        'Event reviews and photo reports',
-        'Partners'
+        page.home.title1,
+        page.home.title2,
+        page.home.title3,
+        page.home.title4,
+        page.home.title5
     ];
     const descriptions = [
-        'Track events, socialize and use the message board for your life and business.',
-        'Your place to buy and sell: whether it\'s an old car or renting an apartment. Easier and faster!',
-        'Discover a world of local news, talk about events in your neighborhood and share service reviews.',
-        'Capture the beauty of Seychelles and share spectacular moments with our community.',
-        'Order a review or report from Almanet, advertise and find your audience on our platform.'
+        page.home.description1,
+        page.home.description2,
+        page.home.description3,
+        page.home.description4,
+        page.home.description5
     ];
     const [heroContainerHeight, setHeroContainerHeight] = useState({
         height: ''
@@ -173,7 +192,7 @@ export const Hero = () => {
                                 mb-6
                             "
                         >
-                            Try first
+                            {page.home.button}
                             <FiArrowRight size={24} className='ml-1' />
                         </button>
                         <Image

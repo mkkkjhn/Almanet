@@ -2,8 +2,16 @@ import { Controls } from '@/components/Controls';
 import { Footer } from '@/components/Footer';
 import { Header } from '@/components/Header';
 import { Hero } from '@/components/Hero';
+import { Locale } from '@/i18n.config';
+import { getDictionary } from '@/lib/dictionary';
 
-export default function Home() {
+export default async function Home({
+    params: { lang }
+} : {
+    params: { lang: Locale }
+}) {
+    const { page } = await getDictionary(lang);
+
     return (
         <div className="
             flex
@@ -13,9 +21,9 @@ export default function Home() {
         "
         >
             <Header />
-            <Hero />
+            <Hero page={ page } />
             <Controls />
-            <Footer />
+            <Footer page={ page } />
         </div>
     );
 }

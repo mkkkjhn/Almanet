@@ -2,6 +2,7 @@
 
 import Image from 'next/image';
 import { FaInstagram, FaFacebookF } from 'react-icons/fa6';
+import LocaleSwitcher from '@/components/LocaleSwitcher';
 import Logo from '@/public/images/logo.png';
 
 export const Header = () => (
@@ -53,6 +54,7 @@ export const Header = () => (
                 >
                     <FaFacebookF size={16} color={'#ffffff'} />
                 </div>
+                <LocaleSwitcher />
             </div>
         </div>
     </>

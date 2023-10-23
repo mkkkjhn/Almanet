@@ -1,0 +1,18 @@
+{
+  "page": {
+    "home": {
+      "title1": "Welcome to NextJs i18n",
+      "description1": "Internationalization in NextJs 13 App router",
+      "title2": "Welcome to NextJs i18n",
+      "description2": "Internationalization in NextJs 13 App router",
+      "title3": "Welcome to NextJs i18n",
+      "description3": "Internationalization in NextJs 13 App router",
+      "title4": "Welcome to NextJs i18n",
+      "description4": "Internationalization in NextJs 13 App router",
+      "title5": "Welcome to NextJs i18n",
+      "description5": "Internationalization in NextJs 13 App router",
+      "button": "123",
+      "privatePolicy": "Private policy"
+    }
+  }
+}
