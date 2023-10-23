@@ -1,4 +1,5 @@
-'use client'
+'use client';
+
 import React, { ReactNode, useState } from 'react';
 import { Context } from '@/context/Context';
 
@@ -7,7 +8,7 @@ interface MyProviderProps {
 }
 
 const Provider: React.FC<MyProviderProps> = ({ children }) => {
-    const [currentSlide, setCurrentSlide] = useState(1)
+    const [currentSlide, setCurrentSlide] = useState(1);
 
     return (
         <Context.Provider value={{ currentSlide, setCurrentSlide }}>

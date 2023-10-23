@@ -1,8 +1,9 @@
 'use client';
-import {useContext} from "react";
-import { FiArrowLeft } from "react-icons/fi";
-import { FiArrowRight } from "react-icons/fi";
-import { Context } from "@/context/Context";
+
+import { useContext } from 'react';
+import { FiArrowLeft, FiArrowRight } from 'react-icons/fi';
+
+import { Context } from '@/context/Context';
 
 export const Controls = () => {
     const context = useContext(Context);
@@ -93,7 +94,7 @@ export const Controls = () => {
                     "
                 >
                     {[
-                        1,2,3,4,5
+                        1, 2, 3, 4, 5
                     ].map((num) => (
                         <div
                             className="mx-0.5"

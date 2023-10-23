@@ -1,13 +1,12 @@
-'use client'
-import Image from "next/image";
-import Logo from "@/public/images/logo.png"
-import { FaInstagram } from "react-icons/fa6";
-import { FaFacebookF } from "react-icons/fa6";
+'use client';
 
-export const Header = () => {
-    return (
-        <>
-            <div className="
+import Image from 'next/image';
+import { FaInstagram, FaFacebookF } from 'react-icons/fa6';
+import Logo from '@/public/images/logo.png';
+
+export const Header = () => (
+    <>
+        <div className="
                 h-max
                 w-full
                 flex
@@ -16,13 +15,13 @@ export const Header = () => {
                 px-4
                 py-4
             "
-            >
-                <Image src={Logo} alt="Logo"></Image>
-                <div className="
+        >
+            <Image src={Logo} alt="Logo"></Image>
+            <div className="
                     flex
                 ">
-                    <div
-                        className="
+                <div
+                    className="
                             w-6
                             h-6
                             mr-1
@@ -35,11 +34,11 @@ export const Header = () => {
                             hover:bg-green
                             transition
                         "
-                    >
-                        <FaInstagram size={15} color={'#ffffff'} />
-                    </div>
-                    <div
-                        className="
+                >
+                    <FaInstagram size={15} color={'#ffffff'} />
+                </div>
+                <div
+                    className="
                             w-6
                             h-6
                             bg-controls-light-gray
@@ -51,11 +50,10 @@ export const Header = () => {
                             hover:bg-green
                             transition
                         "
-                    >
-                        <FaFacebookF size={16} color={'#ffffff'} />
-                    </div>
+                >
+                    <FaFacebookF size={16} color={'#ffffff'} />
                 </div>
             </div>
-        </>
-    );
-};
+        </div>
+    </>
+);

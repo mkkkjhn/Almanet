@@ -1,19 +1,20 @@
 'use client';
-import Image from "next/image";
-import { useContext, useEffect, useState } from "react";
-import { FiArrowRight } from "react-icons/fi";
+
+import Image from 'next/image';
+import { useContext, useEffect, useState } from 'react';
+import { FiArrowRight } from 'react-icons/fi';
 import { useSwipeable } from 'react-swipeable';
-import { Context } from "@/context/Context";
-import Slide1Desc from "@/public/images/slide-1-desc.jpg";
-import Slide1Mob from "@/public/images/slide-1-mob.jpg";
-import Slide2Desc from "@/public/images/slide-2-desc.jpg";
-import Slide2Mob from "@/public/images/slide-2-mob.jpg";
-import Slide3Desc from "@/public/images/slide-3-desc.jpg";
-import Slide3Mob from "@/public/images/slide-3-mob.jpg";
-import Slide4Desc from "@/public/images/slide-4-desc.jpg";
-import Slide4Mob from "@/public/images/slide-4-mob.jpg";
-import Slide5Desc from "@/public/images/slide-5-desc.jpg";
-import Slide5Mob from "@/public/images/slide-5-mob.jpg";
+import { Context } from '@/context/Context';
+import Slide1Desc from '@/public/images/slide-1-desc.jpg';
+import Slide1Mob from '@/public/images/slide-1-mob.jpg';
+import Slide2Desc from '@/public/images/slide-2-desc.jpg';
+import Slide2Mob from '@/public/images/slide-2-mob.jpg';
+import Slide3Desc from '@/public/images/slide-3-desc.jpg';
+import Slide3Mob from '@/public/images/slide-3-mob.jpg';
+import Slide4Desc from '@/public/images/slide-4-desc.jpg';
+import Slide4Mob from '@/public/images/slide-4-mob.jpg';
+import Slide5Desc from '@/public/images/slide-5-desc.jpg';
+import Slide5Mob from '@/public/images/slide-5-mob.jpg';
 
 export const Hero = () => {
     const slidesDesc = [Slide1Desc, Slide2Desc, Slide3Desc, Slide4Desc, Slide5Desc];
@@ -41,17 +42,13 @@ export const Hero = () => {
     useEffect(() => {
         const handleResize = () => {
             const isLgAndUp = window.innerWidth > 1024;
-            const isXxs = window.innerWidth < 400 && window.innerHeight < 800
-            setHeroContainerHeight({height: isLgAndUp ? '' : 'calc(100% - 124px)'});
-            setTextContainerHeight({height: isLgAndUp ? '' : 'calc(100% - 291px)'});
-            if (isXxs) setHeroContainerHeight({height: 'max-content'})
-
+            const isXxs = window.innerWidth < 400 && window.innerHeight < 800;
+            setHeroContainerHeight({ height: isLgAndUp ? '' : 'calc(100% - 124px)' });
+            setTextContainerHeight({ height: isLgAndUp ? '' : 'calc(100% - 291px)' });
+            if (isXxs) setHeroContainerHeight({ height: 'max-content' });
         };
 
-        // Добавьте обработчик события при монтировании компонента
         window.addEventListener('resize', handleResize);
-
-        // Уберите обработчик события при размонтировании компонента
         return () => {
             window.removeEventListener('resize', handleResize);
         };
@@ -62,18 +59,6 @@ export const Hero = () => {
         throw new Error('Context undefined');
     }
     const { currentSlide, setCurrentSlide } = context;
-
-    const handlerSwipe = useSwipeable({
-        onSwiped: (eventData) => {
-            const { dir } = eventData;
-            if (dir === 'Left') {
-                incrementCurrentSlide();
-            } else {
-                decrementCurrentSlide();
-            }
-
-        }
-    });
 
     const incrementCurrentSlide = () => {
         if (currentSlide !== 5) {
@@ -90,6 +75,16 @@ export const Hero = () => {
         }
     };
 
+    const handlerSwipe = useSwipeable({
+        onSwiped: (eventData) => {
+            const { dir } = eventData;
+            if (dir === 'Left') {
+                incrementCurrentSlide();
+            } else {
+                decrementCurrentSlide();
+            }
+        }
+    });
     return (
         <>
             <div
@@ -161,7 +156,7 @@ export const Hero = () => {
                                 mb-4
                             "
                         >
-                            {descriptions[currentSlide -1]}
+                            {descriptions[currentSlide - 1]}
                         </p>
                         <button
                             className="
@@ -183,7 +178,7 @@ export const Hero = () => {
                         </button>
                         <Image
                             {...handlerSwipe}
-                            src={slidesMob[currentSlide -1]}
+                            src={slidesMob[currentSlide - 1]}
                             alt="Mobile version"
                             style={textContainerHeight}
                             className="
@@ -256,7 +251,7 @@ export const Hero = () => {
                             "
                             />
                             <Image
-                                src={slidesMob[currentSlide -1]}
+                                src={slidesMob[currentSlide - 1]}
                                 alt="Mobile version"
                                 className="
                                 absolute

@@ -4,7 +4,7 @@ const nextConfig = {
         formats: ['image/webp'],
         unoptimized: false,
         minimumCacheTTL: 31536000
-    },
-}
+    }
+};
 
-module.exports = nextConfig
+module.exports = nextConfig;

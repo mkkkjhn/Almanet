@@ -1,7 +1,8 @@
 import type { Metadata } from 'next';
+// eslint-disable-next-line camelcase
 import { Open_Sans } from 'next/font/google';
 import './globals.css';
-import Provider from "@/app/Provider";
+import Provider from '@/app/Provider';
 
 const font = Open_Sans({ subsets: ['latin'] });
 

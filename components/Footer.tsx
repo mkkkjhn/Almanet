@@ -1,8 +1,7 @@
-export const Footer = () => {
-    return (
-        <>
-            <div
-                className="
+export const Footer = () => (
+    <>
+        <div
+            className="
                     flex
                     items-center
                     mx-auto
@@ -13,25 +12,24 @@ export const Footer = () => {
                     opacity-40
                     h-max
                 "
-            >
-                <span
-                    className="
+        >
+            <span
+                className="
                         mx-0.5
                     "
-                >
+            >
                     Copyright © 2023 Almanet.com.
-                </span>
-                <a
-                    className="
+            </span>
+            <a
+                className="
                         mx-0.5
                         cursor-pointer
                         hover:opacity-80
                         transition
                     "
-                >
+            >
                     Private policy
-                </a>
-            </div>
-        </>
-    );
-};
+            </a>
+        </div>
+    </>
+);

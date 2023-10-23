@@ -1,9 +1,9 @@
-import { Header } from "@/components/Header";
-import { Hero } from "@/components/Hero";
-import { Controls } from "@/components/Controls";
-import {Footer} from "@/components/Footer";
-export default function Home() {
+import { Controls } from '@/components/Controls';
+import { Footer } from '@/components/Footer';
+import { Header } from '@/components/Header';
+import { Hero } from '@/components/Hero';
 
+export default function Home() {
     return (
         <div className="
             flex
@@ -17,5 +17,5 @@ export default function Home() {
             <Controls />
             <Footer />
         </div>
-    )
+    );
 }
