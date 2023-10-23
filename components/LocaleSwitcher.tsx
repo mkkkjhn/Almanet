@@ -4,7 +4,11 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { i18n } from '@/i18n.config';
 
-export default function LocaleSwitcher() {
+interface LocaleSwitcherProps {
+    currentLocale: string
+}
+
+export default function LocaleSwitcher({ currentLocale }: LocaleSwitcherProps) {
     const pathName = usePathname();
 
     const redirectedPathName = (locale: string) => {
@@ -18,26 +22,32 @@ export default function LocaleSwitcher() {
         <>
             <div
                 className="
-                        sm:flex
-                        items-center
-                        font-semibold
-                        text-xl
-                        text-controls-dark-gray
-                        hidden
-                    "
+                    flex
+                    items-center
+                    font-semibold
+                    text-l
+                    text-controls-dark-gray
+                "
             >
                 <div
                     className="
-                            flex
-                            justify-center
-                            items-center
-                            h-6
-                            w-6
-                        "
+                        flex
+                        justify-center
+                        items-center
+                        h-6
+                        w-6
+                        mx-1
+                    "
                 >
-                    <span>
+                    <Link
+                        href={redirectedPathName(i18n.locales[0])}
+                        style={{
+                            opacity: currentLocale === i18n.locales[0] ? '1' : '.4',
+                            cursor: currentLocale === i18n.locales[0] ? 'unset' : 'pointer'
+                        }}
+                    >
                         {i18n.locales[0]}
-                    </span>
+                    </Link>
                 </div>
                 <div
                     className="
@@ -53,33 +63,20 @@ export default function LocaleSwitcher() {
                             items-center
                             h-6
                             w-6
+                            mx-1
                         "
                 >
-                    <span
-                        className="
-                            opacity-40
-                        "
+                    <Link
+                        href={redirectedPathName(i18n.locales[1])}
+                        style={{
+                            opacity: currentLocale === i18n.locales[1] ? '1' : '.4',
+                            cursor: currentLocale === i18n.locales[1] ? 'unset' : 'pointer'
+                        }}
                     >
                         {i18n.locales[1]}
-                    </span>
+                    </Link>
                 </div>
             </div>
-            <ul
-                className="
-                    flex
-            "
-            >
-                {i18n.locales.map(locale => (
-                    <li key={locale}>
-                        <Link
-                            href={redirectedPathName(locale)}
-                            className='rounded-md bg-black px-3 py-2 text-black'
-                        >
-                            {locale}
-                        </Link>
-                    </li>
-                ))}
-            </ul>
         </>
     );
 }

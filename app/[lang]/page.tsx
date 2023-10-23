@@ -20,7 +20,7 @@ export default async function Home({
             w-screen
         "
         >
-            <Header />
+            <Header currentLocale={ lang } />
             <Hero page={ page } />
             <Controls />
             <Footer page={ page } />

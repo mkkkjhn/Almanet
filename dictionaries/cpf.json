@@ -1,17 +1,17 @@
 {
   "page": {
     "home": {
-      "title1": "Welcome to NextJs i18n",
-      "description1": "Internationalization in NextJs 13 App router",
-      "title2": "Welcome to NextJs i18n",
-      "description2": "Internationalization in NextJs 13 App router",
-      "title3": "Welcome to NextJs i18n",
-      "description3": "Internationalization in NextJs 13 App router",
-      "title4": "Welcome to NextJs i18n",
-      "description4": "Internationalization in NextJs 13 App router",
-      "title5": "Welcome to NextJs i18n",
-      "description5": "Internationalization in NextJs 13 App router",
-      "button": "123",
+      "title1": "Seychelles` first social platform",
+      "description1": "Track events, socialize and use the message board for your life and business.",
+      "title2": "CreoleTrade Bulletin Board",
+      "description2": "Your place to buy and sell: whether it's an old car or renting an apartment. Easier and faster!",
+      "title3": "Almanet News Feed",
+      "description3": "Discover a world of local news, talk about events in your neighborhood and share service reviews.",
+      "title4": "Event reviews and photo reports",
+      "description4": "Capture the beauty of Seychelles and share spectacular moments with our community.",
+      "title5": "Partners",
+      "description5": "Order a review or report from Almanet, advertise and find your audience on our platform.",
+      "button": "Try first",
       "privatePolicy": "Private policy"
     }
   }
