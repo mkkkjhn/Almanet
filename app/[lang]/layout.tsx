@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 // eslint-disable-next-line camelcase
 import { Open_Sans } from 'next/font/google';
-import './globals.css';
+import './globals.scss';
 import Provider from '@/app/[lang]/Provider';
 import { Locale, i18n } from '@/i18n.config';
 

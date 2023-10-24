@@ -1,0 +1,71 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html,
+body,
+:root {
+  @apply h-screen
+}
+
+:root {
+  --foreground-rgb: 0, 0, 0;
+  --background-start-rgb: 214, 219, 220;
+  --background-end-rgb: 255, 255, 255;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --foreground-rgb: 255, 255, 255;
+    --background-start-rgb: 0, 0, 0;
+    --background-end-rgb: 0, 0, 0;
+  }
+}
+
+body {
+  @apply overflow-x-hidden bg-bg-main
+}
+
+h1 {
+  font-weight: 800;
+}
+
+// slides animation
+.fade-enter {
+  opacity: 0;
+}
+.fade-exit {
+  opacity: 1;
+}
+.fade-enter-active {
+  opacity: 1;
+}
+.fade-exit-active {
+  opacity: 0;
+}
+.fade-enter-active,
+.fade-exit-active {
+  transition: opacity 500ms;
+}
+
+// text animation
+.text-enter{
+  opacity: 0;
+  transform: translate(-100%, 0);
+}
+.text-exit{
+  opacity: 1;
+  transform: translate(0, 0);
+}
+.text-enter-active{
+  opacity: 1;
+  transform: translate(0, 0);
+}
+.text-exit-active{
+  opacity: 0;
+  transform: translate(-100%, 0);
+}
+.text-enter-active,
+.text-exit-active{
+  transition: all 500ms;
+}

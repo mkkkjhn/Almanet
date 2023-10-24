@@ -9,9 +9,15 @@ interface MyProviderProps {
 
 const Provider: React.FC<MyProviderProps> = ({ children }) => {
     const [currentSlide, setCurrentSlide] = useState(1);
+    const [animationHandler, setAnimationHandler] = useState(true);
 
     return (
-        <Context.Provider value={{ currentSlide, setCurrentSlide }}>
+        <Context.Provider value={{
+            currentSlide,
+            setCurrentSlide,
+            animationHandler,
+            setAnimationHandler
+        }}>
             {children}
         </Context.Provider>
     );
