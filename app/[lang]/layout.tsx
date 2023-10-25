@@ -3,6 +3,7 @@ import type { Metadata } from 'next';
 import { Open_Sans } from 'next/font/google';
 import './globals.scss';
 import Provider from '@/app/[lang]/Provider';
+import Header from '@/components/Header';
 import { Locale, i18n } from '@/i18n.config';
 
 const font = Open_Sans({ subsets: ['latin'] });
@@ -24,12 +25,17 @@ export default function RootLayout({
     params: { lang: Locale }
 }) {
     return (
-        <html lang={params.lang}>
-            <body className={font.className}>
-                <Provider>
-                    {children}
-                </Provider>
-            </body>
+        <html lang={params.lang} className={font.className}>
+            <Provider>
+                <body>
+                    <header>
+                        <Header params={params} />
+                    </header>
+                    <main style={{ height: 'calc(100% - 56px)' }}>
+                        {children}
+                    </main>
+                </body>
+            </Provider>
         </html>
     );
 }

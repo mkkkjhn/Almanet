@@ -2,37 +2,39 @@
 
 import Image from 'next/image';
 import { FaInstagram, FaFacebookF } from 'react-icons/fa6';
-import LocaleSwitcher from '@/components/LocaleSwitcher';
+import LocaleSwitcher from '@/components/common/LocaleSwitcher';
 import { Locale } from '@/i18n.config';
 import Logo from '@/public/images/logo.png';
 
-interface HeaderProps {
-    currentLocale: Locale
-}
-
-export const Header = ({ currentLocale }: HeaderProps) => (
-    <>
-        <div className="
-                h-max
-                w-full
-                flex
-                justify-between
-                sm:px-20
-                px-4
-                py-4
-            "
-        >
-            <Image src={Logo} alt="Logo"></Image>
-            <div className="flex items-center">
-                <div
-                    className="
+export default function Header({
+    params: { lang }
+}: {
+    params: { lang: Locale }
+}) {
+    return (
+        <>
+            <div
+                className="
+                    h-max
+                    w-full
+                    flex
+                    justify-between
+                    sm:px-20
+                    px-4
+                    py-4
+                "
+            >
+                <Image src={Logo} alt="Logo"></Image>
+                <div className="flex items-center">
+                    <div
+                        className="
                         flex
                         sm:mr-8
                         mr-4
                     "
-                >
-                    <div
-                        className="
+                    >
+                        <div
+                            className="
                             w-6
                             h-6
                             mr-1
@@ -45,11 +47,11 @@ export const Header = ({ currentLocale }: HeaderProps) => (
                             hover:bg-green
                             transition
                         "
-                    >
-                        <FaInstagram size={15} color={'#ffffff'} />
-                    </div>
-                    <div
-                        className="
+                        >
+                            <FaInstagram size={15} color={'#ffffff'} />
+                        </div>
+                        <div
+                            className="
                             w-6
                             h-6
                             bg-controls-light-gray
@@ -61,12 +63,13 @@ export const Header = ({ currentLocale }: HeaderProps) => (
                             hover:bg-green
                             transition
                         "
-                    >
-                        <FaFacebookF size={16} color={'#ffffff'} />
+                        >
+                            <FaFacebookF size={16} color={'#ffffff'} />
+                        </div>
                     </div>
+                    <LocaleSwitcher currentLocale={lang} />
                 </div>
-                <LocaleSwitcher currentLocale={currentLocale} />
             </div>
-        </div>
-    </>
-);
+        </>
+    );
+}

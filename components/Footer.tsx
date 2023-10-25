@@ -1,23 +1,6 @@
-interface FooterProps {
-    page: {
-        home: {
-            title1: string,
-            description1: string,
-            title2: string,
-            description2: string,
-            title3: string,
-            description3: string,
-            title4: string,
-            description4: string,
-            title5: string,
-            description5: string,
-            button: string,
-            privatePolicy: string
-        }
-    }
-}
+import type { dictionaryPageType } from '@/types';
 
-export const Footer = ({ page }: FooterProps) => (
+export const Footer = ({ page }: dictionaryPageType) => (
     <>
         <div
             className="

@@ -1,12 +1,14 @@
 'use client';
 
 import Image from 'next/image';
+import { useRouter } from 'next/navigation';
 import {
     useContext, useEffect, useRef, useState
 } from 'react';
 import { FiArrowLeft, FiArrowRight } from 'react-icons/fi';
 import { useSwipeable } from 'react-swipeable';
 import { SwitchTransition, CSSTransition } from 'react-transition-group';
+import { Button } from '@/components/common/Button';
 import { Context } from '@/context/Context';
 import Slide1Desc from '@/public/images/slide-1-desc.jpg';
 import Slide1Mob from '@/public/images/slide-1-mob.jpg';
@@ -18,27 +20,9 @@ import Slide4Desc from '@/public/images/slide-4-desc.jpg';
 import Slide4Mob from '@/public/images/slide-4-mob.jpg';
 import Slide5Desc from '@/public/images/slide-5-desc.jpg';
 import Slide5Mob from '@/public/images/slide-5-mob.jpg';
+import type { dictionaryPageType } from '@/types';
 
-interface HeroProps {
-    page: {
-        home: {
-            title1: string,
-            description1: string,
-            title2: string,
-            description2: string,
-            title3: string,
-            description3: string,
-            title4: string,
-            description4: string,
-            title5: string,
-            description5: string,
-            button: string,
-            privatePolicy: string
-        }
-    }
-}
-
-export const Hero = ({ page }: HeroProps) => {
+export const Hero = ({ page }: dictionaryPageType) => {
     const slidesDesc = [Slide1Desc, Slide2Desc, Slide3Desc, Slide4Desc, Slide5Desc];
     const slidesMob = [Slide1Mob, Slide2Mob, Slide3Mob, Slide4Mob, Slide5Mob];
     const titles = [
@@ -71,6 +55,8 @@ export const Hero = ({ page }: HeroProps) => {
             window.removeEventListener('resize', handleResize);
         };
     }, []);
+
+    const router = useRouter();
 
     const context = useContext(Context);
     if (!context) {
@@ -179,12 +165,12 @@ export const Hero = ({ page }: HeroProps) => {
                                         className="
                                             xl:text-[56px]
                                             xl:leading-[64px]
-                                            sm:min-h-0
-                                            min-w-[320px]
-                                            min-h-[144px]
                                             text-[40px]
                                             leading-[48px]
                                             font-extrabold
+                                            sm:min-h-0
+                                            min-w-[320px]
+                                            min-h-[144px]
                                             sm:mb-4
                                             mb-2
                                             mt-2
@@ -212,24 +198,13 @@ export const Hero = ({ page }: HeroProps) => {
                                 </div>
                             </CSSTransition>
                         </SwitchTransition>
-                        <button
-                            className="
-                                xl:w-[280px]
-                                w-full
-                                h-14
-                                bg-green
-                                text-white
-                                flex
-                                justify-center
-                                items-center
-                                rounded-lg
-                                sm:mb-0
-                                mb-6
-                            "
-                        >
-                            {page.home.button}
-                            <FiArrowRight size={24} className='ml-1' />
-                        </button>
+                        <Button
+                            type="button"
+                            label={'Try first'}
+                            onClick={() => router.push('/sign-up')}
+                            color={'#00AD64'}
+                            appendIcon={<FiArrowRight size={24} style={{ marginLeft: '4px' }} />}
+                        />
                         <div
                             style={{ height: 'calc(100% - 291px)' }}
                             className="

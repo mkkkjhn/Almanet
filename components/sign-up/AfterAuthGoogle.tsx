@@ -1,0 +1,75 @@
+import { FaFacebookSquare } from 'react-icons/fa';
+import { Button } from '@/components/common/Button';
+import type { dictionaryPageType } from '@/types';
+
+export const AfterAuthGoogle = ({ page }: dictionaryPageType) => (
+    <>
+        <div
+            className="
+                flex
+                flex-col
+                justify-center
+                items-center
+            "
+        >
+            <div
+                className="
+                    sm:mb-14
+                    flex
+                    flex-col
+                    items-center
+                "
+            >
+                <h1
+                    className="
+                            xl:text-[56px]
+                            xl:leading-[64px]
+                            text-[40px]
+                            leading-[48px]
+                            font-extrabold
+                            mb-4
+                        "
+                >
+                    {page.signUpViaGoogle.title}
+                </h1>
+                <p
+                    className="
+                            text-sm
+                            font-normal
+                        "
+                >
+                    {page.signUpViaGoogle.description}
+                </p>
+            </div>
+            <div
+                className="
+                    flex
+                    flex-col
+                    items-center
+                    w-full
+                "
+            >
+                <div
+                    className="
+                        flex
+                        flex-col
+                        justify-between
+                        mb-9
+                        w-full
+                        px-12
+                    "
+                >
+                    <Button
+                        type="button"
+                        label={page.signUpViaGoogle.buttonFb}
+                        color={'#4193EF'}
+                        appendIcon={<FaFacebookSquare size={28} style={{ marginLeft: '4px' }} />}
+                    />
+                </div>
+                <span>
+                    {page.signUpViaGoogle.tieLater}
+                </span>
+            </div>
+        </div>
+    </>
+);

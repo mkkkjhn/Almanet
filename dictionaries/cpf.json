@@ -13,6 +13,21 @@
       "description5": "Order a review or report from Almanet, advertise and find your audience on our platform.",
       "button": "Try first",
       "privatePolicy": "Private policy"
+    },
+    "signUp": {
+      "title": "Join Almanet",
+      "description": "Sign up to be one of the first",
+      "buttonFb": "Sign up via Facebook",
+      "buttonGoogle": "Sign up via Google",
+      "or": "Or",
+      "emailPlaceholder": "Email address",
+      "disclaimer": "By registering, you accept our"
+    },
+    "signUpViaGoogle": {
+      "title": "Strengthen your social network",
+      "description": "Your Facebook account will allow you to get account personalization",
+      "buttonFb": "Tie Facebook",
+      "tieLater": "Tie later"
     }
   }
 }

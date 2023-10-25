@@ -1,6 +1,5 @@
 import { Controls } from '@/components/Controls';
 import { Footer } from '@/components/Footer';
-import { Header } from '@/components/Header';
 import { Hero } from '@/components/Hero';
 import { Locale } from '@/i18n.config';
 import { getDictionary } from '@/lib/dictionary';
@@ -20,7 +19,6 @@ export default async function Home({
             w-screen
         "
         >
-            <Header currentLocale={ lang } />
             <Hero page={ page } />
             <Controls />
             <Footer page={ page } />

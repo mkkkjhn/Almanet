@@ -16,7 +16,8 @@ const config: Config = {
             'slide-gray-light': '#6D6E6E',
             'controls-light-gray': '#D9D9D9',
             'controls-gray': '#A6A6A6',
-            'controls-dark-gray': '#323433'
+            'controls-dark-gray': '#323433',
+            'text-gray': 'rgba(#323433, .7)'
         },
         extend: {
         }
