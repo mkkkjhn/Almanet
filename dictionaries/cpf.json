@@ -28,6 +28,18 @@
       "description": "Your Facebook account will allow you to get account personalization",
       "buttonFb": "Tie Facebook",
       "tieLater": "Tie later"
+    },
+    "signUpViaFacebook": {
+      "title": "Be the first to the Almanet",
+      "description": "Enter your e-mail to get access to the platform first. We'll send you a link before the official release and also provide a bonus to promote your profile",
+      "buttonGoogle": "Be first",
+      "later": "Later"
+    },
+    "signUpFinal": {
+      "title": "Thank you",
+      "description": "We'll send a link to early access to the platform and all the information you need for you. Follow us on social media",
+      "followFbButton": "Follow on Facebook",
+      "followIgButton": "Follow on Instagram"
     }
   }
 }

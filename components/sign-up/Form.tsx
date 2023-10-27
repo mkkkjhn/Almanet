@@ -1,15 +1,90 @@
 'use client';
 
-import { signIn } from 'next-auth/react';
-import { useState } from 'react';
+import {
+    sendSignInLinkToEmail,
+    isSignInWithEmailLink,
+    signInWithEmailLink,
+    signInWithRedirect,
+    GoogleAuthProvider,
+    FacebookAuthProvider,
+    getRedirectResult
+} from 'firebase/auth';
+import { useRouter } from 'next/navigation';
+import { useContext, useEffect, useState } from 'react';
+import { AiOutlineSend } from 'react-icons/ai';
 import { FaFacebookSquare } from 'react-icons/fa';
 import { FcGoogle } from 'react-icons/fc';
 import { Button } from '@/components/common/Button';
 import { Input } from '@/components/common/Input';
+import { Context } from '@/context/Context';
+import { auth } from '@/firebase/firebase';
 import type { dictionaryPageType } from '@/types';
 
 export const Form = ({ page }: dictionaryPageType) => {
     const [email, setEmail] = useState('');
+    const router = useRouter();
+    const context = useContext(Context);
+    if (!context) {
+        throw new Error('Context undefined');
+    }
+    const { setSignInMethod } = context;
+
+    const googleProvider = new GoogleAuthProvider();
+    const fbProvider = new FacebookAuthProvider();
+    const signInViaFb = () => {
+        signInWithRedirect(auth, fbProvider)
+            .catch((fbError) => {
+                console.log(fbError);
+            });
+    };
+    const signInViaGoogle = () => {
+        signInWithRedirect(auth, googleProvider)
+            .catch((googleError) => {
+                console.log(googleError);
+            });
+    };
+
+    const actionCodeSettings = {
+        url: 'https://almanet.vercel.app/en/sign-up/first-step',
+        handleCodeInApp: true
+    };
+    const signInViaEmail = () => {
+        sendSignInLinkToEmail(auth, email, actionCodeSettings)
+            .then(() => {
+                window.localStorage.setItem('emailForSignIn', email);
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+    };
+
+    useEffect(() => {
+        if (isSignInWithEmailLink(auth, window.location.href)) {
+            const useEmail = window.localStorage.getItem('emailForSignIn');
+            signInWithEmailLink(auth, useEmail as string, window.location.href)
+                .then((result) => {
+                    window.localStorage.removeItem('emailForSignIn');
+                    console.log(result);
+                    router.push('/sign-up/second-step');
+                })
+                .catch((error) => {
+                    console.log(error);
+                });
+        }
+        getRedirectResult(auth)
+            .then((result) => {
+                if (result) {
+                    const googleCredential = GoogleAuthProvider.credentialFromResult(result);
+                    const fbCredential = FacebookAuthProvider.credentialFromResult(result);
+                    setSignInMethod(googleCredential?.signInMethod as string || fbCredential?.signInMethod as string);
+                    router.push('/sign-up/second-step');
+                    // const token = credential?.accessToken;
+                    // const { user } = result;
+                }
+            }).catch((error) => {
+                console.log(error);
+            });
+    });
 
     return (
         <>
@@ -71,6 +146,7 @@ export const Form = ({ page }: dictionaryPageType) => {
                     >
                         <div className="mb-6">
                             <Button
+                                onClick={() => signInViaFb()}
                                 type="button"
                                 label={page.signUp.buttonFb}
                                 color={'#4193EF'}
@@ -78,7 +154,7 @@ export const Form = ({ page }: dictionaryPageType) => {
                             />
                         </div>
                         <Button
-                            onClick={() => signIn('google')}
+                            onClick={() => signInViaGoogle()}
                             type="button"
                             label={page.signUp.buttonGoogle}
                             color={'#7CD3AF'}
@@ -96,8 +172,9 @@ export const Form = ({ page }: dictionaryPageType) => {
                     </span>
                     <div
                         className="
-                            mb-6
                             w-full
+                            relative
+                            mb-6
                             px-12
                         "
                     >
@@ -108,6 +185,29 @@ export const Form = ({ page }: dictionaryPageType) => {
                             label={page.signUp.emailPlaceholder}
                             type="email"
                         />
+                        { email.length ? (
+                            <div
+                                onClick={() => signInViaEmail()}
+                                className="
+                                cursor-pointer
+                                bg-green
+                                w-8
+                                h-8
+                                rounded
+                                flex
+                                justify-center
+                                items-center
+                                text-white
+                                absolute
+                                top-1/2
+                                -translate-y-1/2
+                                right-0
+                                transition
+                            "
+                            >
+                                <AiOutlineSend size={24} />
+                            </div>
+                        ) : ''}
                     </div>
                     <p>
                         {page.signUp.disclaimer}

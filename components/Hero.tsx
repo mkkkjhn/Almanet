@@ -201,7 +201,7 @@ export const Hero = ({ page }: dictionaryPageType) => {
                         <Button
                             type="button"
                             label={'Try first'}
-                            onClick={() => router.push('/sign-up')}
+                            onClick={() => router.push('/sign-up/first-step')}
                             color={'#00AD64'}
                             appendIcon={<FiArrowRight size={24} style={{ marginLeft: '4px' }} />}
                         />

@@ -10,13 +10,16 @@ interface MyProviderProps {
 const Provider: React.FC<MyProviderProps> = ({ children }) => {
     const [currentSlide, setCurrentSlide] = useState(1);
     const [animationHandler, setAnimationHandler] = useState(true);
+    const [signInMethod, setSignInMethod] = useState('');
 
     return (
         <Context.Provider value={{
             currentSlide,
             setCurrentSlide,
             animationHandler,
-            setAnimationHandler
+            setAnimationHandler,
+            signInMethod,
+            setSignInMethod
         }}>
             {children}
         </Context.Provider>

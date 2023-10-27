@@ -1,7 +1,8 @@
 import { initializeApp, getApps } from 'firebase/app';
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
-const firebaseConfig = {
+import { getAuth } from 'firebase/auth';
+import { getFirestore } from '@firebase/firestore';
+
+const firebase = {
     apiKey: 'AIzaSyDmsBd8CgOkExENrm-LwJYm-LjzflfTeyU',
     authDomain: 'almanet-18ca7.firebaseapp.com',
     projectId: 'almanet-18ca7',
@@ -12,6 +13,9 @@ const firebaseConfig = {
 };
 
 // Initialize Firebase
-const firebaseApp = getApps().length === 0 ? initializeApp(firebaseConfig) : getApps()[0];
+const app = getApps().length === 0 ? initializeApp(firebase) : getApps()[0];
+const db = getFirestore(app);
 
-export default firebaseApp;
+const auth = getAuth(app);
+
+export { app, db, auth };

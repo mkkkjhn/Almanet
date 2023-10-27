@@ -5,6 +5,8 @@ interface ContextType {
     setCurrentSlide: (currentSlide: number) => void,
     animationHandler: boolean,
     setAnimationHandler: (animationHandler: boolean) => void,
+    signInMethod: string,
+    setSignInMethod: (signInMethod: string) => void
 }
 
 export const Context = createContext<ContextType | undefined>(undefined);
