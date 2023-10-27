@@ -3,13 +3,13 @@ import { getAuth } from 'firebase/auth';
 import { getFirestore } from '@firebase/firestore';
 
 const firebase = {
-    apiKey: 'AIzaSyDmsBd8CgOkExENrm-LwJYm-LjzflfTeyU',
-    authDomain: 'almanet-18ca7.firebaseapp.com',
-    projectId: 'almanet-18ca7',
-    storageBucket: 'almanet-18ca7.appspot.com',
-    messagingSenderId: '313009027412',
-    appId: '1:313009027412:web:7b478985b87639849ab0c1',
-    measurementId: 'G-CRLNEX76L9'
+    apiKey: process.env.FIREBASE_API_KEY,
+    authDomain: process.env.FIREBASE_AUTH_DOMAIN,
+    projectId: process.env.FIREBASE_PROJECT_ID,
+    storageBucket: process.env.FIREBASE_STORAGE_BUCKET,
+    messagingSenderId: process.env.FIREBASE_MESAGING_SENDER_ID,
+    appId: process.env.FIREBASE_APP_ID,
+    measurementId: process.env.FIREBASE_MEASUREMENT_ID
 };
 
 // Initialize Firebase
