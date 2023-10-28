@@ -1,6 +1,6 @@
 import { Form } from '@/components/sign-up/Form';
 import { Locale } from '@/i18n.config';
-import { getDictionary } from '@/lib/dictionary';
+import { getDictionary } from '@/services/lib/dictionary';
 
 // eslint-disable-next-line @next/next/no-async-client-component
 export default async function FirstStep({

@@ -1,13 +1,13 @@
 'use client';
 
 import {
-    getRedirectResult, FacebookAuthProvider, signOut, signInWithRedirect
+    getRedirectResult, FacebookAuthProvider, signInWithRedirect
 } from 'firebase/auth';
 import { useRouter } from 'next/navigation';
 import { useEffect } from 'react';
 import { FaFacebookSquare } from 'react-icons/fa';
 import { Button } from '@/components/common/Button';
-import { auth } from '@/firebase/firebase';
+import { auth } from '@/services/firebase/firebase';
 import type { dictionaryPageType } from '@/types';
 
 interface AfterAuthGoogle {

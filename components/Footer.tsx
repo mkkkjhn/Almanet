@@ -1,9 +1,17 @@
-import type { dictionaryPageType } from '@/types';
+import { Locale } from '@/i18n.config';
+import { getDictionary } from '@/services/lib/dictionary';
 
-export const Footer = ({ page }: dictionaryPageType) => (
-    <>
-        <div
-            className="
+export default async function Footer({
+    params: { lang }
+} : {
+    params: { lang: Locale }
+}) {
+    const { page } = await getDictionary(lang);
+
+    return (
+        <>
+            <div
+                className="
                     flex
                     items-center
                     mx-auto
@@ -13,25 +21,27 @@ export const Footer = ({ page }: dictionaryPageType) => (
                     text-controls-dark-gray
                     opacity-40
                     h-max
+                    justify-center
                 "
-        >
-            <span
-                className="
+            >
+                <span
+                    className="
                         mx-0.5
                     "
-            >
+                >
                     Copyright © 2023 Almanet.com.
-            </span>
-            <a
-                className="
+                </span>
+                <a
+                    className="
                         mx-0.5
                         cursor-pointer
                         hover:opacity-80
                         transition
                     "
-            >
-                {page.home.privatePolicy}
-            </a>
-        </div>
-    </>
-);
+                >
+                    {page.home.privatePolicy}
+                </a>
+            </div>
+        </>
+    );
+}

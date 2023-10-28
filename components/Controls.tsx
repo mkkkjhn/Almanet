@@ -7,9 +7,6 @@ import { Context } from '@/context/Context';
 
 export const Controls = () => {
     const context = useContext(Context);
-    if (!context) {
-        throw new Error('Context undefined');
-    }
     const { currentSlide, setCurrentSlide } = context;
     const incrementCurrentSlide = () => {
         if (currentSlide !== 5) {

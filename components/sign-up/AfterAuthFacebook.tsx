@@ -9,7 +9,7 @@ import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { AiOutlineSend } from 'react-icons/ai';
 import { Input } from '@/components/common/Input';
-import { auth } from '@/firebase/firebase';
+import { auth } from '@/services/firebase/firebase';
 import type { dictionaryPageType } from '@/types';
 
 export function AfterAuthFacebook({ page }: dictionaryPageType) {
@@ -17,7 +17,7 @@ export function AfterAuthFacebook({ page }: dictionaryPageType) {
     const router = useRouter();
 
     const actionCodeSettings = {
-        url: 'https://almanet.vercel.app/en/sign-up/second-step',
+        url: 'http://localhost:3000/en/sign-up/first-step',
         handleCodeInApp: true
     };
     const signInViaEmail = () => {

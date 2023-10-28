@@ -15,10 +15,10 @@ export default function SecondStepWrap({ page }: dictionaryPageType) {
 
     return (
         <>
-            {signInMethod === 'google.com' ? (
-                <AfterAuthGoogle page={page} />
-            ) : (
+            {signInMethod === 'facebook.com' ? (
                 <AfterAuthFacebook page={page} />
+            ) : (
+                <AfterAuthGoogle page={page} />
             )}
         </>
     );

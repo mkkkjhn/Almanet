@@ -3,6 +3,7 @@ import type { Metadata } from 'next';
 import { Open_Sans } from 'next/font/google';
 import './globals.scss';
 import Provider from '@/app/[lang]/Provider';
+import Footer from '@/components/Footer';
 import Header from '@/components/Header';
 import { Locale, i18n } from '@/i18n.config';
 
@@ -27,13 +28,22 @@ export default function RootLayout({
     return (
         <html lang={params.lang} className={font.className}>
             <Provider>
-                <body>
+                <body
+                    className="
+                        flex
+                        flex-col
+                        h-screen
+                    "
+                >
                     <header>
                         <Header params={params} />
                     </header>
-                    <main style={{ height: 'calc(100% - 56px)' }}>
+                    <main style={{ height: 'calc(100% - 76px)' }}>
                         {children}
                     </main>
+                    <footer>
+                        <Footer params={params} />
+                    </footer>
                 </body>
             </Provider>
         </html>

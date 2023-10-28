@@ -17,7 +17,7 @@ import { FcGoogle } from 'react-icons/fc';
 import { Button } from '@/components/common/Button';
 import { Input } from '@/components/common/Input';
 import { Context } from '@/context/Context';
-import { auth } from '@/firebase/firebase';
+import { auth } from '@/services/firebase/firebase';
 import type { dictionaryPageType } from '@/types';
 
 export const Form = ({ page }: dictionaryPageType) => {
@@ -45,7 +45,7 @@ export const Form = ({ page }: dictionaryPageType) => {
     };
 
     const actionCodeSettings = {
-        url: 'https://almanet.vercel.app/en/sign-up/first-step',
+        url: 'http://localhost:3000/en/sign-up/first-step',
         handleCodeInApp: true
     };
     const signInViaEmail = () => {

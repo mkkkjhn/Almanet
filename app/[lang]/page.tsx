@@ -1,8 +1,7 @@
 import { Controls } from '@/components/Controls';
-import { Footer } from '@/components/Footer';
 import { Hero } from '@/components/Hero';
 import { Locale } from '@/i18n.config';
-import { getDictionary } from '@/lib/dictionary';
+import { getDictionary } from '@/services/lib/dictionary';
 
 export default async function Home({
     params: { lang }
@@ -15,13 +14,12 @@ export default async function Home({
         <div className="
             flex
             flex-col
-            h-screen
+            h-full
             w-screen
         "
         >
             <Hero page={ page } />
             <Controls />
-            <Footer page={ page } />
         </div>
     );
 }

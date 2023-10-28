@@ -8,5 +8,12 @@ interface ContextType {
     signInMethod: string,
     setSignInMethod: (signInMethod: string) => void
 }
-
-export const Context = createContext<ContextType | undefined>(undefined);
+const defaultState = {
+    currentSlide: 1,
+    setCurrentSlide: () => null,
+    animationHandler: false,
+    setAnimationHandler: () => null,
+    signInMethod: 'google.com',
+    setSignInMethod: () => null
+};
+export const Context = createContext<ContextType>(defaultState);
