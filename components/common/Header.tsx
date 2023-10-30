@@ -1,8 +1,9 @@
 'use client';
 
 import Image from 'next/image';
+import Link from 'next/link';
 import { FaInstagram, FaFacebookF } from 'react-icons/fa6';
-import LocaleSwitcher from '@/components/common/LocaleSwitcher';
+import LocaleSwitcher from '@/components/ui/LocaleSwitcher';
 import { Locale } from '@/i18n.config';
 import Logo from '@/public/images/logo.png';
 
@@ -24,7 +25,9 @@ export default function Header({
                     py-4
                 "
             >
-                <Image src={Logo} alt="Logo"></Image>
+                <Link href="/">
+                    <Image src={Logo} alt="Logo"></Image>
+                </Link>
                 <div className="flex items-center">
                     <div
                         className="

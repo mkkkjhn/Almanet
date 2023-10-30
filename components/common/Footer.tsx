@@ -13,6 +13,8 @@ export default async function Footer({
             <div
                 className="
                     flex
+                    flex-col
+                    sm:flex-row
                     items-center
                     mx-auto
                     my-2
@@ -35,11 +37,21 @@ export default async function Footer({
                     className="
                         mx-0.5
                         cursor-pointer
-                        hover:opacity-80
+                        hover:text-text-accent-blue
                         transition
                     "
                 >
-                    {page.home.privatePolicy}
+                    {page.home.privatePolicy},
+                </a>
+                <a
+                    className="
+                        mx-0.5
+                        cursor-pointer
+                        hover:text-text-accent-blue
+                        transition
+                    "
+                >
+                    User Agreement
                 </a>
             </div>
         </>

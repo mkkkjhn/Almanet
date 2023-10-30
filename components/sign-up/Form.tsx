@@ -14,20 +14,19 @@ import { useContext, useEffect, useState } from 'react';
 import { AiOutlineSend } from 'react-icons/ai';
 import { FaFacebookSquare } from 'react-icons/fa';
 import { FcGoogle } from 'react-icons/fc';
-import { Button } from '@/components/common/Button';
-import { Input } from '@/components/common/Input';
+import { TbLoaderQuarter } from 'react-icons/tb';
+import { Button } from '@/components/ui/Button';
+import { Input } from '@/components/ui/Input';
 import { Context } from '@/context/Context';
 import { auth } from '@/services/firebase/firebase';
 import type { dictionaryPageType } from '@/types';
 
 export const Form = ({ page }: dictionaryPageType) => {
     const [email, setEmail] = useState('');
+    const [isEmailSent, setIsEmailSent] = useState(false);
     const router = useRouter();
     const context = useContext(Context);
-    if (!context) {
-        throw new Error('Context undefined');
-    }
-    const { setSignInMethod } = context;
+    const { setSignInMethod, isLoading, setIsLoading } = context;
 
     const googleProvider = new GoogleAuthProvider();
     const fbProvider = new FacebookAuthProvider();
@@ -49,9 +48,12 @@ export const Form = ({ page }: dictionaryPageType) => {
         handleCodeInApp: true
     };
     const signInViaEmail = () => {
+        setIsLoading(true);
         sendSignInLinkToEmail(auth, email, actionCodeSettings)
             .then(() => {
                 window.localStorage.setItem('emailForSignIn', email);
+                setIsLoading(false);
+                setIsEmailSent(true);
             })
             .catch((error) => {
                 console.log(error);
@@ -60,12 +62,14 @@ export const Form = ({ page }: dictionaryPageType) => {
 
     useEffect(() => {
         if (isSignInWithEmailLink(auth, window.location.href)) {
+            setIsLoading(true);
             const useEmail = window.localStorage.getItem('emailForSignIn');
             signInWithEmailLink(auth, useEmail as string, window.location.href)
                 .then((result) => {
                     window.localStorage.removeItem('emailForSignIn');
                     console.log(result);
                     router.push('/sign-up/second-step');
+                    setIsLoading(false);
                 })
                 .catch((error) => {
                     console.log(error);
@@ -74,12 +78,15 @@ export const Form = ({ page }: dictionaryPageType) => {
         getRedirectResult(auth)
             .then((result) => {
                 if (result) {
+                    setIsLoading(true);
                     const googleCredential = GoogleAuthProvider.credentialFromResult(result);
                     const fbCredential = FacebookAuthProvider.credentialFromResult(result);
                     setSignInMethod(googleCredential?.signInMethod as string || fbCredential?.signInMethod as string);
                     router.push('/sign-up/second-step');
                     // const token = credential?.accessToken;
                     // const { user } = result;
+                } else {
+                    setIsLoading(false);
                 }
             }).catch((error) => {
                 console.log(error);
@@ -125,97 +132,119 @@ export const Form = ({ page }: dictionaryPageType) => {
                         {page.signUp.description}
                     </p>
                 </div>
-                <div
-                    className="
-                        flex
-                        flex-col
-                        items-center
-                        w-full
-                    "
-                >
+                {!isEmailSent ? (
                     <div
-                        style={{ height: 'calc(100% + 24px)' }}
                         className="
                             flex
                             flex-col
-                            justify-between
-                            mb-9
+                            items-center
                             w-full
-                            px-12
                         "
                     >
-                        <div className="mb-6">
+                        <div
+                            style={{ height: 'calc(100% + 24px)' }}
+                            className="
+                                flex
+                                flex-col
+                                justify-between
+                                mb-9
+                                w-full
+                                px-12
+                            "
+                        >
+                            <div className="mb-6">
+                                <Button
+                                    state={isLoading}
+                                    onClick={() => signInViaFb()}
+                                    type="button"
+                                    label={page.signUp.buttonFb}
+                                    color={'#4193EF'}
+                                    appendIcon={<FaFacebookSquare size={28} style={{ marginLeft: '4px' }} />}
+                                />
+                            </div>
                             <Button
-                                onClick={() => signInViaFb()}
+                                state={isLoading}
+                                onClick={() => signInViaGoogle()}
                                 type="button"
-                                label={page.signUp.buttonFb}
-                                color={'#4193EF'}
-                                appendIcon={<FaFacebookSquare size={28} style={{ marginLeft: '4px' }} />}
+                                label={page.signUp.buttonGoogle}
+                                color={'#7CD3AF'}
+                                appendIcon={<FcGoogle size={28} style={{ marginLeft: '4px' }} />}
                             />
                         </div>
-                        <Button
-                            onClick={() => signInViaGoogle()}
-                            type="button"
-                            label={page.signUp.buttonGoogle}
-                            color={'#7CD3AF'}
-                            appendIcon={<FcGoogle size={28} style={{ marginLeft: '4px' }} />}
-                        />
-                    </div>
-                    <span
-                        className="
+                        <span
+                            className="
                                 text-xl
                                 font-normal
                                 mb-8
                             "
-                    >
-                        {page.signUp.or}
-                    </span>
-                    <div
-                        className="
-                            w-full
-                            relative
-                            mb-6
-                            px-12
-                        "
-                    >
-                        <Input
-                            id="email"
-                            onChange={(event: any) => setEmail(event.target.value)}
-                            value={email}
-                            label={page.signUp.emailPlaceholder}
-                            type="email"
-                        />
-                        { email.length ? (
-                            <div
-                                onClick={() => signInViaEmail()}
-                                className="
+                        >
+                            {page.signUp.or}
+                        </span>
+                        <div
+                            className="
+                                w-full
+                                relative
+                                mb-6
+                                px-12
+                            "
+                        >
+                            <Input
+                                id="email"
+                                onChange={(event: any) => setEmail(event.target.value)}
+                                value={email}
+                                label={page.signUp.emailPlaceholder}
+                                type="email"
+                            />
+                            { email.length ? (
+                                <div
+                                    onClick={() => signInViaEmail()}
+                                    className="
+                                        cursor-pointer
+                                        bg-green
+                                        w-8
+                                        h-8
+                                        rounded
+                                        flex
+                                        justify-center
+                                        items-center
+                                        text-white
+                                        absolute
+                                        top-1/2
+                                        -translate-y-1/2
+                                        right-0
+                                        transition
+                                    "
+                                >
+                                    {!isLoading ? (
+                                        <AiOutlineSend size={24} />
+                                    ) : (
+                                        <TbLoaderQuarter size={24} className="animate-spin" />
+                                    )}
+                                </div>
+                            ) : ''}
+                        </div>
+                        <p>
+                            {page.signUp.disclaimer}
+                        </p>
+                        <span
+                            className="
                                 cursor-pointer
-                                bg-green
-                                w-8
-                                h-8
-                                rounded
-                                flex
-                                justify-center
-                                items-center
-                                text-white
-                                absolute
-                                top-1/2
-                                -translate-y-1/2
-                                right-0
+                                text-text-accent-blue
+                                hover:opacity-70
                                 transition
                             "
-                            >
-                                <AiOutlineSend size={24} />
-                            </div>
-                        ) : ''}
+                        >
+                            {page.home.privatePolicy}
+                        </span>
                     </div>
-                    <p>
-                        {page.signUp.disclaimer}
-                    </p>
-                    <span>
-                        {page.home.privatePolicy}
-                    </span>
-                </div>
+                ) : (
+                    <p
+                        className="
+                            w-[370px]
+                            text-center
+                        "
+                    >Please check your email. We have sent a confirmation email to the address you provided :) </p>
+                )}
             </div>
         </>
     );

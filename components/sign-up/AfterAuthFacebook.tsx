@@ -8,7 +8,7 @@ import {
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { AiOutlineSend } from 'react-icons/ai';
-import { Input } from '@/components/common/Input';
+import { Input } from '@/components/ui/Input';
 import { auth } from '@/services/firebase/firebase';
 import type { dictionaryPageType } from '@/types';
 

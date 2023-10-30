@@ -18,7 +18,8 @@ const config: Config = {
                 'controls-light-gray': '#D9D9D9',
                 'controls-gray': '#A6A6A6',
                 'controls-dark-gray': '#323433',
-                'text-gray': 'rgba(#323433, .7)'
+                'text-gray': 'rgba(#323433, .7)',
+                'text-accent-blue': '#2563EB'
             }
         }
     },

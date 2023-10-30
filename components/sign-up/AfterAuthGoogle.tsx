@@ -4,9 +4,10 @@ import {
     getRedirectResult, FacebookAuthProvider, signInWithRedirect
 } from 'firebase/auth';
 import { useRouter } from 'next/navigation';
-import { useEffect } from 'react';
+import { useContext, useEffect } from 'react';
 import { FaFacebookSquare } from 'react-icons/fa';
-import { Button } from '@/components/common/Button';
+import { Button } from '@/components/ui/Button';
+import { Context } from '@/context/Context';
 import { auth } from '@/services/firebase/firebase';
 import type { dictionaryPageType } from '@/types';
 
@@ -23,18 +24,24 @@ export default function AfterAuthGoogle({ page }:AfterAuthGoogle) {
                 console.log(fbError);
             });
     };
+    const context = useContext(Context);
+    const { isLoading, setIsLoading } = context;
 
     useEffect(() => {
+        setIsLoading(true);
         getRedirectResult(auth)
             .then((result) => {
                 if (result) {
                     router.push('/sign-up/finally');
+                    setIsLoading(false);
                     // const token = credential?.accessToken;
                     // const { user } = result;
                 }
             }).catch((error) => {
                 console.log(error);
             });
+
+        setIsLoading(false);
     });
     return (
         <>
@@ -95,6 +102,7 @@ export default function AfterAuthGoogle({ page }:AfterAuthGoogle) {
                     "
                     >
                         <Button
+                            state={isLoading}
                             onClick={() => signInViaFb()}
                             type="button"
                             label={page.signUpViaGoogle.buttonFb}

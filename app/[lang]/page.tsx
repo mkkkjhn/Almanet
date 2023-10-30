@@ -16,6 +16,8 @@ export default async function Home({
             flex-col
             h-full
             w-screen
+            min-h-max
+            sm:justify-between
         "
         >
             <Hero page={ page } />

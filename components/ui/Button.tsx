@@ -1,16 +1,20 @@
+import { TbLoaderQuarter } from 'react-icons/tb';
+
 interface ButtonProps {
     label: string;
     onClick?: any;
     color: string;
     appendIcon: any;
     type: any;
+    state: boolean;
 }
 export const Button = ({
     label,
     color,
     appendIcon,
     type,
-    onClick
+    onClick,
+    state
 }: ButtonProps) => (
     <button
         onClick={onClick}
@@ -29,7 +33,13 @@ export const Button = ({
             mb-6
         "
     >
-        {label}
-        {appendIcon}
+        {state ? (
+            <TbLoaderQuarter size={24} className="animate-spin"/>
+        ) : (
+            <>
+                {label}
+                {appendIcon}
+            </>
+        )}
     </button>
 );

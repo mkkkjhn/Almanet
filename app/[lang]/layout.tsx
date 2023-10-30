@@ -3,8 +3,8 @@ import type { Metadata } from 'next';
 import { Open_Sans } from 'next/font/google';
 import './globals.scss';
 import Provider from '@/app/[lang]/Provider';
-import Footer from '@/components/Footer';
-import Header from '@/components/Header';
+import Footer from '@/components/common/Footer';
+import Header from '@/components/common/Header';
 import { Locale, i18n } from '@/i18n.config';
 
 const font = Open_Sans({ subsets: ['latin'] });
@@ -38,7 +38,12 @@ export default function RootLayout({
                     <header>
                         <Header params={params} />
                     </header>
-                    <main style={{ height: 'calc(100% - 76px)' }}>
+                    <main
+                        className="
+                            h-full
+                            xl:h-full
+                        "
+                    >
                         {children}
                     </main>
                     <footer>

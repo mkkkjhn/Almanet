@@ -4,24 +4,12 @@ import { useContext } from 'react';
 import { FiArrowLeft, FiArrowRight } from 'react-icons/fi';
 
 import { Context } from '@/context/Context';
+import { useControlSlides } from '@/hooks/useControlSlides';
 
 export const Controls = () => {
     const context = useContext(Context);
-    const { currentSlide, setCurrentSlide } = context;
-    const incrementCurrentSlide = () => {
-        if (currentSlide !== 5) {
-            setCurrentSlide(currentSlide + 1);
-        } else {
-            setCurrentSlide(1);
-        }
-    };
-    const decrementCurrentSlide = () => {
-        if (currentSlide !== 1) {
-            setCurrentSlide(currentSlide - 1);
-        } else {
-            setCurrentSlide(5);
-        }
-    };
+    const { currentSlide } = context;
+    const { incrementCurrentSlide, decrementCurrentSlide } = useControlSlides();
 
     return (
         <>

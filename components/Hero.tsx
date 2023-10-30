@@ -3,13 +3,14 @@
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import {
-    useContext, useEffect, useRef, useState
+    useContext, useRef
 } from 'react';
 import { FiArrowLeft, FiArrowRight } from 'react-icons/fi';
 import { useSwipeable } from 'react-swipeable';
 import { SwitchTransition, CSSTransition } from 'react-transition-group';
-import { Button } from '@/components/common/Button';
+import { Button } from '@/components/ui/Button';
 import { Context } from '@/context/Context';
+import { useControlSlides } from '@/hooks/useControlSlides';
 import Slide1Desc from '@/public/images/slide-1-desc.jpg';
 import Slide1Mob from '@/public/images/slide-1-mob.jpg';
 import Slide2Desc from '@/public/images/slide-2-desc.jpg';
@@ -25,6 +26,7 @@ import type { dictionaryPageType } from '@/types';
 export const Hero = ({ page }: dictionaryPageType) => {
     const slidesDesc = [Slide1Desc, Slide2Desc, Slide3Desc, Slide4Desc, Slide5Desc];
     const slidesMob = [Slide1Mob, Slide2Mob, Slide3Mob, Slide4Mob, Slide5Mob];
+    const { incrementCurrentSlide, decrementCurrentSlide } = useControlSlides();
     const titles = [
         page.home.title1,
         page.home.title2,
@@ -39,45 +41,11 @@ export const Hero = ({ page }: dictionaryPageType) => {
         page.home.description4,
         page.home.description5
     ];
-    const [heroContainerHeight, setHeroContainerHeight] = useState({
-        height: ''
-    });
-    useEffect(() => {
-        const handleResize = () => {
-            const isLgAndUp = window.innerWidth > 1024;
-            const isXxs = window.innerWidth < 400 && window.innerHeight < 800;
-            setHeroContainerHeight({ height: isLgAndUp ? '' : 'calc(100% - 124px)' });
-            if (isXxs) setHeroContainerHeight({ height: 'max-content' });
-        };
-
-        window.addEventListener('resize', handleResize);
-        return () => {
-            window.removeEventListener('resize', handleResize);
-        };
-    }, []);
 
     const router = useRouter();
 
     const context = useContext(Context);
-    if (!context) {
-        throw new Error('Context undefined');
-    }
-    const { currentSlide, setCurrentSlide } = context;
-
-    const incrementCurrentSlide = () => {
-        if (currentSlide !== 5) {
-            setCurrentSlide(currentSlide + 1);
-        } else {
-            setCurrentSlide(1);
-        }
-    };
-    const decrementCurrentSlide = () => {
-        if (currentSlide !== 1) {
-            setCurrentSlide(currentSlide - 1);
-        } else {
-            setCurrentSlide(5);
-        }
-    };
+    const { currentSlide, isLoading } = context;
 
     const handlerSwipe = useSwipeable({
         onSwiped: (eventData) => {
@@ -114,7 +82,7 @@ export const Hero = ({ page }: dictionaryPageType) => {
     return (
         <>
             <div
-                style={heroContainerHeight}
+                style={{ height: 'calc(100% - 32px)' }}
                 className="
                     w-full
                     h-full
@@ -122,6 +90,9 @@ export const Hero = ({ page }: dictionaryPageType) => {
                     items-center
                     xl:flex-row
                     flex-col
+                    min-h-max
+                    sm:justify-center
+                    xl:justify-normal
                 "
             >
                 <div
@@ -133,7 +104,7 @@ export const Hero = ({ page }: dictionaryPageType) => {
                         items-center
                         xl:mb-0
                         sm:mb-8
-                        h-max
+                        h-full
                         sm:h-auto
                     "
                 >
@@ -198,20 +169,30 @@ export const Hero = ({ page }: dictionaryPageType) => {
                                 </div>
                             </CSSTransition>
                         </SwitchTransition>
-                        <Button
-                            type="button"
-                            label={'Try first'}
-                            onClick={() => router.push('/sign-up/first-step')}
-                            color={'#00AD64'}
-                            appendIcon={<FiArrowRight size={24} style={{ marginLeft: '4px' }} />}
-                        />
                         <div
-                            style={{ height: 'calc(100% - 291px)' }}
+                            className="
+                                h-max
+                                w-full
+                            "
+                        >
+                            <Button
+                                state={isLoading}
+                                type="button"
+                                label={'Try first'}
+                                onClick={() => router.push('/sign-up/first-step')}
+                                color={'#00AD64'}
+                                appendIcon={<FiArrowRight size={24} style={{ marginLeft: '4px' }} />}
+                            />
+                        </div>
+                        <div
+                            style={{ height: 'calc(100% - 298px)' }}
                             className="
                                 flex
                                 items-center
                                 justify-between
                                 w-full
+                                min-h-[363px]
+                                sm:min-h-0
                             "
                         >
                             <div
@@ -238,7 +219,7 @@ export const Hero = ({ page }: dictionaryPageType) => {
                                     }}
                                     classNames="fade"
                                 >
-                                    <div ref={mobileRefs[currentSlide - 1]}>
+                                    <div ref={mobileRefs[currentSlide - 1]} className="h-full">
                                         <Image
                                             {...handlerSwipe}
                                             src={slidesMob[currentSlide - 1]}

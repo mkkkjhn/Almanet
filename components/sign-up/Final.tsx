@@ -2,7 +2,7 @@
 
 import { FaFacebookSquare } from 'react-icons/fa';
 import { FcGoogle } from 'react-icons/fc';
-import { Button } from '@/components/common/Button';
+import { Button } from '@/components/ui/Button';
 import type { dictionaryPageType } from '@/types';
 
 export default function Final({ page }: dictionaryPageType) {
@@ -68,6 +68,7 @@ export default function Final({ page }: dictionaryPageType) {
                     >
                         <div className="mb-6">
                             <Button
+                                state={false}
                                 onClick={() => ('')}
                                 type="button"
                                 label={page.signUpFinal.followFbButton}
@@ -76,6 +77,7 @@ export default function Final({ page }: dictionaryPageType) {
                             />
                         </div>
                         <Button
+                            state={false}
                             onClick={() => ('')}
                             type="button"
                             label={page.signUpFinal.followIgButton}
