@@ -12,7 +12,6 @@ type dictionaryPageType = {
             title5: string,
             description5: string,
             button: string,
-            privatePolicy: string
         },
         signUp: {
             title: string,
@@ -40,6 +39,12 @@ type dictionaryPageType = {
             description: string,
             followFbButton: string,
             followIgButton: string
+        },
+        privacyPolicy: {
+            title: string
+        },
+        userAgreement: {
+            title: string
         }
     },
 }

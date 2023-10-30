@@ -4,7 +4,7 @@
 
 html,
 :root {
-  @apply h-screen
+  @apply h-full
 }
 
 :root {
@@ -67,4 +67,34 @@ h1 {
 .text-enter-active,
 .text-exit-active{
   transition: all 500ms;
+}
+
+.policy-text {
+  line-height: 1.6;
+  &:not(:last-child) {
+    margin-bottom: 18px;
+  }
+}
+.policy-ul {
+  margin-top: 18px;
+  margin-bottom: 18px;
+  padding-left: 28px;
+  line-height: 1.6;
+  list-style-type: disc;
+  li:not(:last-child) {
+    margin-bottom: 16px;
+  }
+}
+.policy-link {
+  font-weight: 500;
+  color: #2563EB;
+  text-decoration: underline;
+  text-decoration-skip-ink: none;
+  text-underline-offset: 3px;
+  &:hover {
+    text-decoration-color: transparent;
+  }
+  &:active {
+    text-decoration-color: transparent;
+  }
 }

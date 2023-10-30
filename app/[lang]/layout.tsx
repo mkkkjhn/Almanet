@@ -32,7 +32,6 @@ export default function RootLayout({
                     className="
                         flex
                         flex-col
-                        h-screen
                     "
                 >
                     <header>

@@ -11,8 +11,7 @@
       "description4": "Capture the beauty of Seychelles and share spectacular moments with our community.",
       "title5": "Partners",
       "description5": "Order a review or report from Almanet, advertise and find your audience on our platform.",
-      "button": "Try first",
-      "privatePolicy": "Privacy Policy"
+      "button": "Try first"
     },
     "signUp": {
       "title": "Join Almanet",
@@ -40,6 +39,12 @@
       "description": "We'll send a link to early access to the platform and all the information you need for you. Follow us on social media",
       "followFbButton": "Follow on Facebook",
       "followIgButton": "Follow on Instagram"
+    },
+    "privacyPolicy": {
+      "title": "Privacy Policy"
+    },
+    "userAgreement": {
+      "title": "User Agreement"
     }
   }
 }

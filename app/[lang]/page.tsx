@@ -11,14 +11,15 @@ export default async function Home({
     const { page } = await getDictionary(lang);
 
     return (
-        <div className="
-            flex
-            flex-col
-            h-full
-            w-screen
-            min-h-max
-            sm:justify-between
-        "
+        <div
+            style={{ height: 'calc(100vh - 92px)' }}
+            className="
+                flex
+                flex-col
+                w-screen
+                min-h-max
+                sm:justify-between
+            "
         >
             <Hero page={ page } />
             <Controls />

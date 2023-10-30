@@ -45,7 +45,7 @@ export const Hero = ({ page }: dictionaryPageType) => {
     const router = useRouter();
 
     const context = useContext(Context);
-    const { currentSlide, isLoading } = context;
+    const { currentSlide } = context;
 
     const handlerSwipe = useSwipeable({
         onSwiped: (eventData) => {
@@ -176,7 +176,7 @@ export const Hero = ({ page }: dictionaryPageType) => {
                             "
                         >
                             <Button
-                                state={isLoading}
+                                state={false}
                                 type="button"
                                 label={'Try first'}
                                 onClick={() => router.push('/sign-up/first-step')}

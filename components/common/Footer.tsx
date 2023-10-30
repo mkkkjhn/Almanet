@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import { Locale } from '@/i18n.config';
 import { getDictionary } from '@/services/lib/dictionary';
 
@@ -7,6 +8,8 @@ export default async function Footer({
     params: { lang: Locale }
 }) {
     const { page } = await getDictionary(lang);
+    const privacyPolicyPath = '/about/privacy-policy';
+    const userAgreementPath = '/about/user-agreement';
 
     return (
         <>
@@ -33,7 +36,8 @@ export default async function Footer({
                 >
                     Copyright © 2023 Almanet.com.
                 </span>
-                <a
+                <Link
+                    href={privacyPolicyPath}
                     className="
                         mx-0.5
                         cursor-pointer
@@ -41,9 +45,10 @@ export default async function Footer({
                         transition
                     "
                 >
-                    {page.home.privatePolicy},
-                </a>
-                <a
+                    {page.privacyPolicy.title},
+                </Link>
+                <Link
+                    href={userAgreementPath}
                     className="
                         mx-0.5
                         cursor-pointer
@@ -51,8 +56,8 @@ export default async function Footer({
                         transition
                     "
                 >
-                    User Agreement
-                </a>
+                    {page.userAgreement.title},
+                </Link>
             </div>
         </>
     );
