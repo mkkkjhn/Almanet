@@ -12,13 +12,13 @@ export default async function Home({
 
     return (
         <div
-            style={{ height: 'calc(100vh - 92px)' }}
             className="
                 flex
                 flex-col
                 w-screen
                 min-h-max
                 sm:justify-between
+                h-full
             "
         >
             <Hero page={ page } />
