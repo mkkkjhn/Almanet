@@ -4,10 +4,9 @@ import {
     sendSignInLinkToEmail,
     isSignInWithEmailLink,
     signInWithEmailLink,
-    signInWithRedirect,
     GoogleAuthProvider,
     FacebookAuthProvider,
-    getRedirectResult
+    signInWithPopup
 } from 'firebase/auth';
 import { useRouter } from 'next/navigation';
 import { useContext, useEffect, useState } from 'react';
@@ -31,15 +30,25 @@ export const Form = ({ page }: dictionaryPageType) => {
     const googleProvider = new GoogleAuthProvider();
     const fbProvider = new FacebookAuthProvider();
     const signInViaFb = () => {
-        signInWithRedirect(auth, fbProvider)
-            .catch((fbError) => {
-                console.log(fbError);
+        signInWithPopup(auth, fbProvider)
+            .then((result) => {
+                const credential = GoogleAuthProvider.credentialFromResult(result);
+                setSignInMethod(credential?.signInMethod as string);
+                router.push('/sign-up/second-step');
+            }).catch((error) => {
+                console.log(error);
             });
     };
     const signInViaGoogle = () => {
-        signInWithRedirect(auth, googleProvider)
-            .catch((googleError) => {
-                console.log(googleError);
+        setIsLoading(true);
+        signInWithPopup(auth, googleProvider)
+            .then((result) => {
+                const credential = GoogleAuthProvider.credentialFromResult(result);
+                setSignInMethod(credential?.signInMethod as string);
+                router.push('/sign-up/second-step');
+                setIsLoading(false);
+            }).catch((error) => {
+                console.log(error);
             });
     };
 
@@ -75,22 +84,6 @@ export const Form = ({ page }: dictionaryPageType) => {
                     console.log(error);
                 });
         }
-        getRedirectResult(auth)
-            .then((result) => {
-                if (result) {
-                    setIsLoading(true);
-                    const googleCredential = GoogleAuthProvider.credentialFromResult(result);
-                    const fbCredential = FacebookAuthProvider.credentialFromResult(result);
-                    setSignInMethod(googleCredential?.signInMethod as string || fbCredential?.signInMethod as string);
-                    router.push('/sign-up/second-step');
-                    // const token = credential?.accessToken;
-                    // const { user } = result;
-                } else {
-                    setIsLoading(false);
-                }
-            }).catch((error) => {
-                console.log(error);
-            });
     });
 
     return (
@@ -234,7 +227,7 @@ export const Form = ({ page }: dictionaryPageType) => {
                                 transition
                             "
                         >
-                            {page.home.privatePolicy}
+                            {page.privacyPolicy.title}
                         </span>
                     </div>
                 ) : (

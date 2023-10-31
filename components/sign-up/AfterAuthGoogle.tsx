@@ -1,10 +1,10 @@
 'use client';
 
 import {
-    getRedirectResult, FacebookAuthProvider, signInWithRedirect
+    FacebookAuthProvider, signInWithPopup
 } from 'firebase/auth';
 import { useRouter } from 'next/navigation';
-import { useContext, useEffect } from 'react';
+import { useContext } from 'react';
 import { FaFacebookSquare } from 'react-icons/fa';
 import { Button } from '@/components/ui/Button';
 import { Context } from '@/context/Context';
@@ -19,30 +19,16 @@ export default function AfterAuthGoogle({ page }:AfterAuthGoogle) {
     const router = useRouter();
     const provider = new FacebookAuthProvider();
     const signInViaFb = () => {
-        signInWithRedirect(auth, provider)
-            .catch((fbError) => {
-                console.log(fbError);
-            });
-    };
-    const context = useContext(Context);
-    const { isLoading, setIsLoading } = context;
-
-    useEffect(() => {
-        setIsLoading(true);
-        getRedirectResult(auth)
-            .then((result) => {
-                if (result) {
-                    router.push('/sign-up/finally');
-                    setIsLoading(false);
-                    // const token = credential?.accessToken;
-                    // const { user } = result;
-                }
+        signInWithPopup(auth, provider)
+            .then(() => {
+                router.push('/sign-up/second-step');
             }).catch((error) => {
                 console.log(error);
             });
+    };
+    const context = useContext(Context);
+    const { isLoading } = context;
 
-        setIsLoading(false);
-    });
     return (
         <>
             <div
