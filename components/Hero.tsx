@@ -47,17 +47,6 @@ export const Hero = ({ page }: dictionaryPageType) => {
     const context = useContext(Context);
     const { currentSlide } = context;
 
-    const handlerSwipe = useSwipeable({
-        onSwiped: (eventData) => {
-            const { dir } = eventData;
-            if (dir === 'Left') {
-                incrementCurrentSlide();
-            } else {
-                decrementCurrentSlide();
-            }
-        }
-    });
-
     const firstDescSlideRef = useRef<HTMLDivElement>(null);
     const secondDescSlideRef = useRef<HTMLDivElement>(null);
     const thirdDescSlideRef = useRef<HTMLDivElement>(null);
@@ -78,6 +67,14 @@ export const Hero = ({ page }: dictionaryPageType) => {
     const forthTitleRef = useRef<HTMLDivElement>(null);
     const fifthTitleRef = useRef<HTMLDivElement>(null);
     const textRefs = [firstTitleRef, secondTitleRef, thirdTitleRef, forthTitleRef, fifthTitleRef];
+
+    const handlers = useSwipeable({
+        onSwipedLeft: () => decrementCurrentSlide(),
+        onSwipedRight: () => incrementCurrentSlide(),
+        swipeDuration: 500,
+        preventScrollOnSwipe: true,
+        trackMouse: true
+    });
 
     return (
         <>
@@ -210,21 +207,11 @@ export const Hero = ({ page }: dictionaryPageType) => {
                             >
                                 <FiArrowLeft onClick={decrementCurrentSlide} size={24} />
                             </div>
-                            <SwitchTransition mode="out-in">
-                                <CSSTransition
-                                    key={`adapt_mob_${currentSlide}`}
-                                    nodeRef={mobileRefs[currentSlide - 1]}
-                                    addEndListener={(done) => {
-                                        mobileRefs[currentSlide - 1].current?.addEventListener('transitionend', done, false);
-                                    }}
-                                    classNames="fade"
-                                >
-                                    <div ref={mobileRefs[currentSlide - 1]} className="h-full">
-                                        <Image
-                                            {...handlerSwipe}
-                                            src={slidesMob[currentSlide - 1]}
-                                            alt="Mobile version"
-                                            className="
+                            <Image
+                                {...handlers}
+                                src={slidesMob[currentSlide - 1]}
+                                alt="Mobile version"
+                                className="
                                                 sm:hidden
                                                 h-full
                                                 w-auto
@@ -233,10 +220,7 @@ export const Hero = ({ page }: dictionaryPageType) => {
                                                 rounded-[14px]
                                                 min-h-[363px]
                                             "
-                                        />
-                                    </div>
-                                </CSSTransition>
-                            </SwitchTransition>
+                            />
                             <div
                                 className="
                                     h-10
