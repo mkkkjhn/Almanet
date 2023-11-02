@@ -9,6 +9,7 @@ export default async function Home({
     params: { lang: Locale }
 }) {
     const { page } = await getDictionary(lang);
+    // const router = useRouter();
 
     return (
         <div

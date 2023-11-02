@@ -115,6 +115,8 @@ export const Controls = () => {
                     "
                 >
                     <div
+                        style={{ opacity: currentSlide === 1 ? '.3' : '', cursor: currentSlide === 1 ? 'unset' : 'pointer' }}
+                        aria-disabled={currentSlide === 1}
                         className="
                             h-10
                             w-10
@@ -129,6 +131,8 @@ export const Controls = () => {
                         <FiArrowLeft onClick={decrementCurrentSlide} size={24} />
                     </div>
                     <div
+                        style={{ opacity: currentSlide === 5 ? '.3' : '', cursor: currentSlide === 5 ? 'unset' : 'pointer' }}
+                        aria-disabled={currentSlide === 5}
                         className="
                             h-10
                             w-10

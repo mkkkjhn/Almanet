@@ -56,7 +56,7 @@ export default async function Footer({
                         transition
                     "
                 >
-                    {page.userAgreement.title},
+                    {page.userAgreement.title}
                 </Link>
             </div>
         </>

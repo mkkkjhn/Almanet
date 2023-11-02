@@ -1,13 +1,15 @@
 'use client';
 
+import { debounce } from 'next/dist/server/utils';
 import Image from 'next/image';
-import { useRouter } from 'next/navigation';
+import { useRouter } from 'next-nprogress-bar';
 import {
-    useContext, useRef
+    useContext, useEffect, useRef, useState
 } from 'react';
 import { FiArrowLeft, FiArrowRight } from 'react-icons/fi';
-import { useSwipeable } from 'react-swipeable';
 import { SwitchTransition, CSSTransition } from 'react-transition-group';
+import { Navigation } from 'swiper/modules';
+import { Swiper, SwiperSlide } from 'swiper/react';
 import { Button } from '@/components/ui/Button';
 import { Context } from '@/context/Context';
 import { useControlSlides } from '@/hooks/useControlSlides';
@@ -22,11 +24,34 @@ import Slide4Mob from '@/public/images/slide-4-mob.jpg';
 import Slide5Desc from '@/public/images/slide-5-desc.jpg';
 import Slide5Mob from '@/public/images/slide-5-mob.jpg';
 import type { dictionaryPageType } from '@/types';
+import 'swiper/scss';
 
 export const Hero = ({ page }: dictionaryPageType) => {
     const slidesDesc = [Slide1Desc, Slide2Desc, Slide3Desc, Slide4Desc, Slide5Desc];
     const slidesMob = [Slide1Mob, Slide2Mob, Slide3Mob, Slide4Mob, Slide5Mob];
+    const [dynamicKeyValue, setFoo] = useState(1);
+    const [innerWidthOld, setInnerWidthOld] = useState(window.innerWidth);
+    const context = useContext(Context);
+    const { currentSlide } = context;
+    useEffect(() => {
+        const handleResize = () => {
+            const { innerWidth } = window;
+
+            setFoo(
+                innerWidth < innerWidthOld ? dynamicKeyValue - 1 : dynamicKeyValue + 1
+            );
+
+            setInnerWidthOld(innerWidth);
+        };
+
+        window.addEventListener('resize', handleResize);
+
+        return () => {
+            window.removeEventListener('resize', debounce(handleResize, 300));
+        };
+    }, []);
     const { incrementCurrentSlide, decrementCurrentSlide } = useControlSlides();
+    const router = useRouter();
     const titles = [
         page.home.title1,
         page.home.title2,
@@ -41,11 +66,6 @@ export const Hero = ({ page }: dictionaryPageType) => {
         page.home.description4,
         page.home.description5
     ];
-
-    const router = useRouter();
-
-    const context = useContext(Context);
-    const { currentSlide } = context;
 
     const firstDescSlideRef = useRef<HTMLDivElement>(null);
     const secondDescSlideRef = useRef<HTMLDivElement>(null);
@@ -68,13 +88,16 @@ export const Hero = ({ page }: dictionaryPageType) => {
     const fifthTitleRef = useRef<HTMLDivElement>(null);
     const textRefs = [firstTitleRef, secondTitleRef, thirdTitleRef, forthTitleRef, fifthTitleRef];
 
-    const handlers = useSwipeable({
-        onSwipedLeft: () => decrementCurrentSlide(),
-        onSwipedRight: () => incrementCurrentSlide(),
-        swipeDuration: 500,
-        preventScrollOnSwipe: true,
-        trackMouse: true
-    });
+    const prevButton = useRef(null);
+    const nextButton = useRef(null);
+
+    const handleChangeSwiper = (swiper: any) => {
+        if (swiper.activeIndex > swiper.previousIndex) {
+            incrementCurrentSlide();
+        } else {
+            decrementCurrentSlide();
+        }
+    };
 
     return (
         <>
@@ -190,9 +213,14 @@ export const Hero = ({ page }: dictionaryPageType) => {
                                 w-full
                                 min-h-[363px]
                                 sm:min-h-0
+                                relative
+                                max-w-full
                             "
                         >
                             <div
+                                style={{ opacity: currentSlide === 1 ? '.3' : '', cursor: currentSlide === 1 ? 'unset' : 'pointer' }}
+                                aria-disabled={currentSlide === 1}
+                                ref={prevButton}
                                 className="
                                     h-10
                                     w-10
@@ -205,13 +233,38 @@ export const Hero = ({ page }: dictionaryPageType) => {
                                     sm:hidden
                                 "
                             >
-                                <FiArrowLeft onClick={decrementCurrentSlide} size={24} />
+                                <FiArrowLeft size={24} />
                             </div>
-                            <Image
-                                {...handlers}
-                                src={slidesMob[currentSlide - 1]}
-                                alt="Mobile version"
-                                className="
+                            <Swiper
+                                slidesPerView={1}
+                                className="w-[calc(100vw-7rem)]"
+                                onSlideChange={(e) => handleChangeSwiper(e)}
+                                navigation={{
+                                    nextEl: prevButton.current,
+                                    prevEl: nextButton.current
+                                }}
+                                modules={[
+                                    Navigation
+                                ]}
+                                onBeforeInit={(swiper: any) => {
+                                    // @ts-ignore
+                                    // eslint-disable-next-line no-param-reassign
+                                    swiper.params.navigation.prevEl = prevButton.current;
+                                    // @ts-ignore
+                                    // eslint-disable-next-line no-param-reassign
+                                    swiper.params.navigation.nextEl = nextButton.current;
+                                }}
+                                initialSlide={currentSlide - 1}
+                            >
+                                {slidesMob.map((slide, index) => (
+                                    <SwiperSlide key={`image_wrapper_${index}`}>
+                                        <Image
+                                            key={`image_${index}`}
+                                            src={slide}
+                                            alt="Mobile version"
+                                            className="
+                                                block
+                                                mx-auto
                                                 sm:hidden
                                                 h-full
                                                 w-auto
@@ -220,8 +273,14 @@ export const Hero = ({ page }: dictionaryPageType) => {
                                                 rounded-[14px]
                                                 min-h-[363px]
                                             "
-                            />
+                                        />
+                                    </SwiperSlide>
+                                ))}
+                            </Swiper>
                             <div
+                                style={{ opacity: currentSlide === 5 ? '.3' : '', cursor: currentSlide === 5 ? 'unset' : 'pointer' }}
+                                aria-disabled={currentSlide === 5}
+                                ref={nextButton}
                                 className="
                                     h-10
                                     w-10
@@ -234,7 +293,7 @@ export const Hero = ({ page }: dictionaryPageType) => {
                                     sm:hidden
                                 "
                             >
-                                <FiArrowRight onClick={incrementCurrentSlide} size={24} />
+                                <FiArrowRight size={24} />
                             </div>
                         </div>
                         <div
@@ -272,14 +331,15 @@ export const Hero = ({ page }: dictionaryPageType) => {
                         "
                     >
                         <div
+                            key={`big_slider_${dynamicKeyValue}`}
                             className="
-                            relative
-                            w-full
-                            max-w-[960px]
-                            h-auto
-                            sm:block
-                            hidden
-                        "
+                                relative
+                                w-full
+                                max-w-[960px]
+                                h-auto
+                                sm:block
+                                hidden
+                            "
                         >
                             <div
                                 className="
@@ -308,17 +368,17 @@ export const Hero = ({ page }: dictionaryPageType) => {
                                         <div
                                             ref={descRefs[currentSlide - 1]}
                                             className="
-                                            w-full
-                                            h-full
-                                        "
+                                                w-full
+                                                h-full
+                                            "
                                         >
                                             <Image
                                                 src={slidesDesc[currentSlide - 1]}
                                                 alt="Desctop version"
                                                 className="
-                                                w-full
-                                                h-full
-                                            "
+                                                    w-full
+                                                    h-full
+                                                "
                                             />
                                         </div>
                                     </CSSTransition>
@@ -350,17 +410,17 @@ export const Hero = ({ page }: dictionaryPageType) => {
                                         <div
                                             ref={mobileRefs[currentSlide - 1]}
                                             className="
-                                            h-full
-                                            w-full
-                                        "
+                                                h-full
+                                                w-full
+                                            "
                                         >
                                             <Image
                                                 src={slidesMob[currentSlide - 1]}
                                                 alt="Mobile version"
                                                 className="
-                                                w-full
-                                                h-full
-                                            "
+                                                    w-full
+                                                    h-full
+                                                "
                                             />
                                         </div>
                                     </CSSTransition>

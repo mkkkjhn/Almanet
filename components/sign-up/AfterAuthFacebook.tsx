@@ -5,7 +5,7 @@ import {
     isSignInWithEmailLink,
     signInWithEmailLink
 } from 'firebase/auth';
-import { useRouter } from 'next/navigation';
+import { useRouter } from 'next-nprogress-bar';
 import { useEffect, useState } from 'react';
 import { AiOutlineSend } from 'react-icons/ai';
 import { Input } from '@/components/ui/Input';

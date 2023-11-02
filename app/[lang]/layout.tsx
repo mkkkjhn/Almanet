@@ -27,31 +27,31 @@ export default function RootLayout({
 }) {
     return (
         <html lang={params.lang} className={font.className}>
-            <Provider>
-                <body
-                    className="
+            <body
+                className="
                         flex
                         flex-col
                         h-full
                         xl:h-screen
                     "
-                >
+            >
+                <Provider>
                     <header>
                         <Header params={params} />
                     </header>
                     <main
                         className="
-                            h-full
-                            xl:h-full
-                        "
+                                h-full
+                                xl:h-full
+                            "
                     >
                         {children}
                     </main>
                     <footer>
                         <Footer params={params} />
                     </footer>
-                </body>
-            </Provider>
+                </Provider>
+            </body>
         </html>
     );
 }

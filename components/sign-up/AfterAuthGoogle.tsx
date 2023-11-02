@@ -3,7 +3,7 @@
 import {
     FacebookAuthProvider, signInWithPopup
 } from 'firebase/auth';
-import { useRouter } from 'next/navigation';
+import { useRouter } from 'next-nprogress-bar';
 import { useContext } from 'react';
 import { FaFacebookSquare } from 'react-icons/fa';
 import { Button } from '@/components/ui/Button';
@@ -18,16 +18,17 @@ interface AfterAuthGoogle {
 export default function AfterAuthGoogle({ page }:AfterAuthGoogle) {
     const router = useRouter();
     const provider = new FacebookAuthProvider();
-    const signInViaFb = () => {
+    const context = useContext(Context);
+    const { isLoading, setIsLoading } = context;
+    const signInViaFb = async () => {
+        setIsLoading(true);
         signInWithPopup(auth, provider)
-            .then(() => {
-                router.push('/sign-up/second-step');
+            .then(async () => {
+                await router.push('/sign-up/second-step');
             }).catch((error) => {
                 console.log(error);
             });
     };
-    const context = useContext(Context);
-    const { isLoading } = context;
 
     return (
         <>

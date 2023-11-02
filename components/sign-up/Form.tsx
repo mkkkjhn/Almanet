@@ -8,7 +8,7 @@ import {
     FacebookAuthProvider,
     signInWithPopup
 } from 'firebase/auth';
-import { useRouter } from 'next/navigation';
+import { useRouter } from 'next-nprogress-bar';
 import { useContext, useEffect, useState } from 'react';
 import { AiOutlineSend } from 'react-icons/ai';
 import { FaFacebookSquare } from 'react-icons/fa';
@@ -29,23 +29,24 @@ export const Form = ({ page }: dictionaryPageType) => {
 
     const googleProvider = new GoogleAuthProvider();
     const fbProvider = new FacebookAuthProvider();
-    const signInViaFb = () => {
+    const signInViaFb = async () => {
+        setIsLoading(true);
         signInWithPopup(auth, fbProvider)
-            .then((result) => {
+            .then(async (result) => {
                 const credential = GoogleAuthProvider.credentialFromResult(result);
                 setSignInMethod(credential?.signInMethod as string);
-                router.push('/sign-up/second-step');
+                await router.push('/sign-up/second-step');
             }).catch((error) => {
                 console.log(error);
             });
     };
-    const signInViaGoogle = () => {
+    const signInViaGoogle = async () => {
         setIsLoading(true);
         signInWithPopup(auth, googleProvider)
-            .then((result) => {
+            .then(async (result) => {
                 const credential = GoogleAuthProvider.credentialFromResult(result);
                 setSignInMethod(credential?.signInMethod as string);
-                router.push('/sign-up/second-step');
+                await router.push('/sign-up/second-step');
                 setIsLoading(false);
             }).catch((error) => {
                 console.log(error);

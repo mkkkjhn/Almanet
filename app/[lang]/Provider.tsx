@@ -1,5 +1,6 @@
 'use client';
 
+import { AppProgressBar as ProgressBar } from 'next-nprogress-bar';
 import React, { ReactNode, useState } from 'react';
 import { Context } from '@/context/Context';
 
@@ -21,6 +22,12 @@ const Provider: React.FC<MyProviderProps> = ({ children }) => {
             signInMethod,
             setSignInMethod
         }}>
+            <ProgressBar
+                height="4px"
+                color="#00AD64"
+                options={{ showSpinner: false }}
+                shallowRouting
+            />
             {children}
         </Context.Provider>
     );
