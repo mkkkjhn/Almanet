@@ -4,6 +4,7 @@ import { debounce } from 'next/dist/server/utils';
 import Image from 'next/image';
 import { useRouter } from 'next-nprogress-bar';
 import {
+    SetStateAction,
     useContext, useEffect, useRef, useState
 } from 'react';
 import { FiArrowLeft, FiArrowRight } from 'react-icons/fi';
@@ -30,16 +31,11 @@ export const Hero = ({ page }: dictionaryPageType) => {
     const slidesDesc = [Slide1Desc, Slide2Desc, Slide3Desc, Slide4Desc, Slide5Desc];
     const slidesMob = [Slide1Mob, Slide2Mob, Slide3Mob, Slide4Mob, Slide5Mob];
     const [dynamicKeyValue, setFoo] = useState(1);
-    // eslint disable nex
     const [innerWidthOld, setInnerWidthOld] = useState(null);
-    const windowRef = useRef(window);
-    useEffect(() => {
-        // @ts-ignore
-        setInnerWidthOld(windowRef.current.innerWidth);
-    }, []);
     const context = useContext(Context);
     const { currentSlide } = context;
     useEffect(() => {
+        setInnerWidthOld(window.innerWidth as SetStateAction<any>);
         const handleResize = () => {
             const { innerWidth } = window;
 
