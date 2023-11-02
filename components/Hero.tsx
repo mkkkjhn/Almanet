@@ -30,18 +30,25 @@ export const Hero = ({ page }: dictionaryPageType) => {
     const slidesDesc = [Slide1Desc, Slide2Desc, Slide3Desc, Slide4Desc, Slide5Desc];
     const slidesMob = [Slide1Mob, Slide2Mob, Slide3Mob, Slide4Mob, Slide5Mob];
     const [dynamicKeyValue, setFoo] = useState(1);
-    const [innerWidthOld, setInnerWidthOld] = useState(window.innerWidth);
+    // eslint disable nex
+    const [innerWidthOld, setInnerWidthOld] = useState(null);
+    const windowRef = useRef(window);
+    useEffect(() => {
+        // @ts-ignore
+        setInnerWidthOld(windowRef.current.innerWidth);
+    }, []);
     const context = useContext(Context);
     const { currentSlide } = context;
     useEffect(() => {
         const handleResize = () => {
             const { innerWidth } = window;
 
-            setFoo(
-                innerWidth < innerWidthOld ? dynamicKeyValue - 1 : dynamicKeyValue + 1
-            );
-
-            setInnerWidthOld(innerWidth);
+            if (innerWidthOld) {
+                setFoo(
+                    innerWidth < innerWidthOld ? dynamicKeyValue - 1 : dynamicKeyValue + 1
+                );
+            }
+            setInnerWidthOld(innerWidthOld);
         };
 
         window.addEventListener('resize', handleResize);
