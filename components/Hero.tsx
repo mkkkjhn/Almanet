@@ -29,29 +29,30 @@ import 'swiper/scss';
 export const Hero = ({ page }: dictionaryPageType) => {
     const slidesDesc = [Slide1Desc, Slide2Desc, Slide3Desc, Slide4Desc, Slide5Desc];
     const slidesMob = [Slide1Mob, Slide2Mob, Slide3Mob, Slide4Mob, Slide5Mob];
-    const [dynamicKeyValue, setFoo] = useState(1);
+    const [dynamicKeyValue, setDynamicKeyValue] = useState(1);
     const [innerWidthOld, setInnerWidthOld] = useState(0);
     const context = useContext(Context);
     const { currentSlide } = context;
     useEffect(() => {
         setInnerWidthOld(window.innerWidth);
+    }, []);
+    useEffect(() => {
         const handleResize = () => {
             const { innerWidth } = window;
 
             if (innerWidthOld) {
-                setFoo(
+                setDynamicKeyValue(
                     innerWidth < innerWidthOld ? dynamicKeyValue - 1 : dynamicKeyValue + 1
                 );
             }
-            setInnerWidthOld(innerWidthOld);
         };
 
-        window.addEventListener('resize', handleResize);
+        window.addEventListener('resize', debounce(handleResize, 300));
 
         return () => {
             window.removeEventListener('resize', debounce(handleResize, 300));
         };
-    }, []);
+    });
     const { incrementCurrentSlide, decrementCurrentSlide } = useControlSlides();
     const router = useRouter();
     const titles = [
