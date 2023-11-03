@@ -8,6 +8,7 @@ import {
     FacebookAuthProvider,
     signInWithPopup
 } from 'firebase/auth';
+import Link from 'next/link';
 import { useRouter } from 'next-nprogress-bar';
 import { useContext, useEffect, useState } from 'react';
 import { AiOutlineSend } from 'react-icons/ai';
@@ -26,6 +27,7 @@ export const Form = ({ page }: dictionaryPageType) => {
     const router = useRouter();
     const context = useContext(Context);
     const { setSignInMethod, isLoading, setIsLoading } = context;
+    const privacyPolicyPath = '/about/privacy-policy';
 
     const googleProvider = new GoogleAuthProvider();
     const fbProvider = new FacebookAuthProvider();
@@ -222,16 +224,20 @@ export const Form = ({ page }: dictionaryPageType) => {
                         <p>
                             {page.signUp.disclaimer}
                         </p>
-                        <span
-                            className="
+                        <Link
+                            href={privacyPolicyPath}
+                        >
+                            <span
+                                className="
                                 cursor-pointer
                                 text-text-accent-blue
                                 hover:opacity-70
                                 transition
                             "
-                        >
-                            {page.privacyPolicy.title}
-                        </span>
+                            >
+                                {page.privacyPolicy.title}
+                            </span>
+                        </Link>
                     </div>
                 ) : (
                     <p

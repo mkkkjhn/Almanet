@@ -1,7 +1,6 @@
 'use client';
 
-import { FaFacebookSquare } from 'react-icons/fa';
-import { FcGoogle } from 'react-icons/fc';
+import { FaFacebookSquare, FaInstagram } from 'react-icons/fa';
 import Button from '@/components/ui/Button';
 import type { dictionaryPageType } from '@/types';
 
@@ -84,7 +83,7 @@ export default function Final({ page }: dictionaryPageType) {
                             type="button"
                             label={page.signUpFinal.followIgButton}
                             color={'#BF5FC1'}
-                            appendIcon={<FcGoogle size={28} style={{ marginLeft: '4px' }} />}
+                            appendIcon={<FaInstagram size={28} style={{ marginLeft: '4px' }} />}
                         />
                     </div>
                 </div>

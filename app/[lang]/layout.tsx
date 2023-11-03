@@ -32,7 +32,7 @@ export default function RootLayout({
                         flex
                         flex-col
                         h-full
-                        xl:h-screen
+                        xl:h-max
                     "
             >
                 <Provider>
