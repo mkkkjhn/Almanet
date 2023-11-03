@@ -7,7 +7,7 @@ import Logo from '@/public/images/logo.png';
 
 export default function Header() {
     const fbLink = 'https://www.facebook.com/almanet.sc/';
-    const instagramLink = 'https://www.instagram.com/almanet.sc/';
+    const instagramLink = 'https://instagram.com/almanet.sc?igshid=MzMyNGUyNmU2YQ==';
     return (
         <>
             <div

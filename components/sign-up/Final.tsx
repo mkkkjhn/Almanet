@@ -7,7 +7,7 @@ import type { dictionaryPageType } from '@/types';
 
 export default function Final({ page }: dictionaryPageType) {
     const fbLink = 'https://www.facebook.com/almanet.sc/';
-    const instagramLink = 'https://www.instagram.com/almanet.sc/';
+    const instagramLink = 'https://instagram.com/almanet.sc?igshid=MzMyNGUyNmU2YQ==';
     const router = useRouter();
 
     return (
