@@ -6,7 +6,7 @@ import {
 import { useRouter } from 'next-nprogress-bar';
 import { useContext } from 'react';
 import { FaFacebookSquare } from 'react-icons/fa';
-import { Button } from '@/components/ui/Button';
+import Button from '@/components/ui/Button';
 import { Context } from '@/context/Context';
 import { auth } from '@/services/firebase/firebase';
 import type { dictionaryPageType } from '@/types';

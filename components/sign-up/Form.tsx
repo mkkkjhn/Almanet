@@ -14,7 +14,7 @@ import { AiOutlineSend } from 'react-icons/ai';
 import { FaFacebookSquare } from 'react-icons/fa';
 import { FcGoogle } from 'react-icons/fc';
 import { TbLoaderQuarter } from 'react-icons/tb';
-import { Button } from '@/components/ui/Button';
+import Button from '@/components/ui/Button';
 import { Input } from '@/components/ui/Input';
 import { Context } from '@/context/Context';
 import { auth } from '@/services/firebase/firebase';
