@@ -6,6 +6,8 @@ import { FaInstagram, FaFacebookF } from 'react-icons/fa6';
 import Logo from '@/public/images/logo.png';
 
 export default function Header() {
+    const fbLink = 'https://www.facebook.com/almanet.sc/';
+    const instagramLink = 'https://www.instagram.com/almanet.sc/';
     return (
         <>
             <div
@@ -23,7 +25,9 @@ export default function Header() {
                     <Image src={Logo} alt="Logo"></Image>
                 </Link>
                 <div className="flex items-center w-max">
-                    <div
+                    <Link
+                        target="_blank"
+                        href={instagramLink}
                         className="
                             w-6
                             h-6
@@ -38,9 +42,11 @@ export default function Header() {
                             transition
                         "
                     >
-                        <FaInstagram size={15} color={'#ffffff'} />
-                    </div>
-                    <div
+                        { <FaInstagram size={15} color={'#ffffff'}/> }
+                    </Link>
+                    <Link
+                        target="_blank"
+                        href={fbLink}
                         className="
                             w-6
                             h-6
@@ -54,8 +60,8 @@ export default function Header() {
                             transition
                         "
                     >
-                        <FaFacebookF size={16} color={'#ffffff'} />
-                    </div>
+                        { <FaFacebookF size={16} color={'#ffffff'}/> }
+                    </Link>
                     {/* <div */}
                     {/*    className=" */}
                     {/*        flex */}

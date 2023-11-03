@@ -34,7 +34,7 @@ export default async function Footer({
                         mx-0.5
                     "
                 >
-                    Copyright © 2023 Almanet.com.
+                    Copyright © 2023 Almanet.sc
                 </span>
                 <Link
                     href={privacyPolicyPath}

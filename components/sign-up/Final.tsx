@@ -1,10 +1,15 @@
 'use client';
 
+import { useRouter } from 'next-nprogress-bar';
 import { FaFacebookSquare, FaInstagram } from 'react-icons/fa';
 import Button from '@/components/ui/Button';
 import type { dictionaryPageType } from '@/types';
 
 export default function Final({ page }: dictionaryPageType) {
+    const fbLink = 'https://www.facebook.com/almanet.sc/';
+    const instagramLink = 'https://www.instagram.com/almanet.sc/';
+    const router = useRouter();
+
     return (
         <>
             <div
@@ -70,7 +75,7 @@ export default function Final({ page }: dictionaryPageType) {
                         <div className="sm:mb-6">
                             <Button
                                 state={false}
-                                onClick={() => ('')}
+                                onClick={() => router.push(fbLink, '_blank')}
                                 type="button"
                                 label={page.signUpFinal.followFbButton}
                                 color={'#4193EF'}
@@ -79,7 +84,7 @@ export default function Final({ page }: dictionaryPageType) {
                         </div>
                         <Button
                             state={false}
-                            onClick={() => ('')}
+                            onClick={() => router.push(instagramLink, '_blank')}
                             type="button"
                             label={page.signUpFinal.followIgButton}
                             color={'#BF5FC1'}

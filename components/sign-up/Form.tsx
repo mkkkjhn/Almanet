@@ -46,8 +46,7 @@ export const Form = ({ page }: dictionaryPageType) => {
             .then(async (result) => {
                 const credential = GoogleAuthProvider.credentialFromResult(result);
                 setSignInMethod(credential?.signInMethod as string);
-                await router.push('/sign-up/second-step');
-                setIsLoading(false);
+                await router.push('/sign-up/finally');
             }).catch((error) => {
                 console.log(error);
             });
@@ -75,9 +74,8 @@ export const Form = ({ page }: dictionaryPageType) => {
             setIsLoading(true);
             const useEmail = window.localStorage.getItem('emailForSignIn');
             signInWithEmailLink(auth, useEmail as string, window.location.href)
-                .then((result) => {
+                .then(() => {
                     window.localStorage.removeItem('emailForSignIn');
-                    console.log(result);
                     router.push('/sign-up/second-step');
                     setIsLoading(false);
                 })
