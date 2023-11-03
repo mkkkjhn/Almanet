@@ -1,7 +1,7 @@
 import Final from '@/components/sign-up/Final';
 import { Locale } from '@/i18n.config';
 import { getDictionary } from '@/services/lib/dictionary';
-// eslint-disable-next-line @next/next/no-async-client-component
+
 export default async function Finally({
     params: { lang }
 } : {

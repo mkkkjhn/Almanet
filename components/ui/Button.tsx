@@ -8,19 +8,20 @@ interface ButtonProps {
     type: any;
     state: boolean;
 }
-export const Button = ({
+export default function Button({
     label,
     color,
     appendIcon,
     type,
     onClick,
     state
-}: ButtonProps) => (
-    <button
-        onClick={onClick}
-        type={type}
-        style={{ backgroundColor: color }}
-        className="
+}: ButtonProps) {
+    return (
+        <button
+            onClick={onClick}
+            type={type}
+            style={{ backgroundColor: color }}
+            className="
             xl:w-[280px]
             w-full
             h-14
@@ -32,14 +33,15 @@ export const Button = ({
             sm:mb-0
             mb-6
         "
-    >
-        {state ? (
-            <TbLoaderQuarter size={24} className="animate-spin"/>
-        ) : (
-            <>
-                {label}
-                {appendIcon}
-            </>
-        )}
-    </button>
-);
+        >
+            {state ? (
+                <TbLoaderQuarter size={24} className="animate-spin"/>
+            ) : (
+                <>
+                    {label}
+                    {appendIcon}
+                </>
+            )}
+        </button>
+    );
+}

@@ -28,7 +28,9 @@ const Provider: React.FC<MyProviderProps> = ({ children }) => {
                 options={{ showSpinner: false }}
                 shallowRouting
             />
-            {children}
+            {
+                children
+            }
         </Context.Provider>
     );
 };

@@ -2,7 +2,6 @@ import SecondStepWrap from '@/components/sign-up/SecondStepWrap';
 import { Locale } from '@/i18n.config';
 import { getDictionary } from '@/services/lib/dictionary';
 
-// eslint-disable-next-line @next/next/no-async-client-component
 export default async function SecondStep({
     params: { lang }
 } : {

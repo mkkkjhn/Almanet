@@ -10,7 +10,7 @@ import { FiArrowLeft, FiArrowRight } from 'react-icons/fi';
 import { SwitchTransition, CSSTransition } from 'react-transition-group';
 import { Navigation } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Button } from '@/components/ui/Button';
+import Button from '@/components/ui/Button';
 import { Context } from '@/context/Context';
 import { useControlSlides } from '@/hooks/useControlSlides';
 import Slide1Desc from '@/public/images/slide-1-desc.jpg';
