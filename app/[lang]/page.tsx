@@ -19,6 +19,7 @@ export default async function Home({
                 w-screen
                 min-h-max
                 sm:justify-between
+                xl:h-[calc(100vh-92px)]
                 h-full
             "
         >
