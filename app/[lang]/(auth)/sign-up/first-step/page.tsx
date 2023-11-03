@@ -14,7 +14,8 @@ export default async function FirstStep({
             <div
                 className="
                     h-full
-                    w-full
+                    xl:h-[calc(100vh-92px)]
+                    w-screen
                     flex
                     justify-center
                     items-center
@@ -38,8 +39,6 @@ export default async function FirstStep({
                         top-[14px]
                         sm:left-[-80px]
                         left-[-140px]
-                        sm:hidden
-                        xl:block
                     "
                 />
                 <div
@@ -58,8 +57,8 @@ export default async function FirstStep({
                         bottom-[14px]
                         right-[-140px]
                         sm:right-[-38px]
-                        sm:hidden
-                        xl:block
+                        hidden
+                        sm:block
                     "
                 />
             </div>

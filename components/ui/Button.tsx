@@ -32,6 +32,8 @@ export default function Button({
             rounded-lg
             sm:mb-0
             mb-6
+            px-4
+            sm:px-0
         "
         >
             {state ? (

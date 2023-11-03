@@ -121,6 +121,8 @@ export const Form = ({ page }: dictionaryPageType) => {
                         className="
                             text-sm
                             font-normal
+                            mb-8
+                            sm:mb-0
                         "
                     >
                         {page.signUp.description}
@@ -141,12 +143,12 @@ export const Form = ({ page }: dictionaryPageType) => {
                                 flex
                                 flex-col
                                 justify-between
-                                mb-9
+                                sm:mb-9
                                 w-full
                                 px-12
                             "
                         >
-                            <div className="mb-6">
+                            <div className="sm:mb-6">
                                 <Button
                                     state={isLoading}
                                     onClick={() => signInViaFb()}

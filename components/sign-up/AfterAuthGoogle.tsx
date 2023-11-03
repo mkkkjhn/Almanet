@@ -38,7 +38,10 @@ export default function AfterAuthGoogle({ page }:AfterAuthGoogle) {
                 flex-col
                 justify-center
                 items-center
-                w-[502px]
+                sm:w-[502px]
+                mx-4
+                sm:mx-0
+                w-full
             "
             >
                 <div
@@ -47,6 +50,7 @@ export default function AfterAuthGoogle({ page }:AfterAuthGoogle) {
                     flex
                     flex-col
                     items-center
+                    w-full
                 "
                 >
                     <h1
@@ -66,6 +70,8 @@ export default function AfterAuthGoogle({ page }:AfterAuthGoogle) {
                         className="
                             text-sm
                             font-normal
+                            text-center
+                            mb-4
                         "
                     >
                         {page.signUpViaGoogle.description}

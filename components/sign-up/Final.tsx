@@ -43,6 +43,8 @@ export default function Final({ page }: dictionaryPageType) {
                             text-sm
                             font-normal
                             text-center
+                            pb-4
+                            sm:pb-0
                         "
                     >
                         {page.signUpFinal.description}
@@ -66,7 +68,7 @@ export default function Final({ page }: dictionaryPageType) {
                             px-12
                         "
                     >
-                        <div className="mb-6">
+                        <div className="sm:mb-6">
                             <Button
                                 state={false}
                                 onClick={() => ('')}
