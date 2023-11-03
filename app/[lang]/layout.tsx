@@ -36,8 +36,8 @@ export default function RootLayout({
                     "
             >
                 <Provider>
-                    <header>
-                        <Header params={params} />
+                    <header className="w-screen">
+                        <Header />
                     </header>
                     <main
                         className="
@@ -46,7 +46,7 @@ export default function RootLayout({
                     >
                         {children}
                     </main>
-                    <footer>
+                    <footer className="w-screen">
                         <Footer params={params} />
                     </footer>
                 </Provider>

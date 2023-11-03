@@ -3,15 +3,9 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { FaInstagram, FaFacebookF } from 'react-icons/fa6';
-import LocaleSwitcher from '@/components/ui/LocaleSwitcher';
-import { Locale } from '@/i18n.config';
 import Logo from '@/public/images/logo.png';
 
-export default function Header({
-    params: { lang }
-}: {
-    params: { lang: Locale }
-}) {
+export default function Header() {
     return (
         <>
             <div
@@ -28,16 +22,9 @@ export default function Header({
                 <Link href="/">
                     <Image src={Logo} alt="Logo"></Image>
                 </Link>
-                <div className="flex items-center">
+                <div className="flex items-center w-max">
                     <div
                         className="
-                        flex
-                        sm:mr-8
-                        mr-4
-                    "
-                    >
-                        <div
-                            className="
                             w-6
                             h-6
                             mr-1
@@ -50,11 +37,11 @@ export default function Header({
                             hover:bg-green
                             transition
                         "
-                        >
-                            <FaInstagram size={15} color={'#ffffff'} />
-                        </div>
-                        <div
-                            className="
+                    >
+                        <FaInstagram size={15} color={'#ffffff'} />
+                    </div>
+                    <div
+                        className="
                             w-6
                             h-6
                             bg-controls-light-gray
@@ -66,11 +53,19 @@ export default function Header({
                             hover:bg-green
                             transition
                         "
-                        >
-                            <FaFacebookF size={16} color={'#ffffff'} />
-                        </div>
+                    >
+                        <FaFacebookF size={16} color={'#ffffff'} />
                     </div>
-                    <LocaleSwitcher currentLocale={lang} />
+                    {/* <div */}
+                    {/*    className=" */}
+                    {/*        flex */}
+                    {/*        sm:mr-8 */}
+                    {/*        mr-4 */}
+                    {/*        justify-between */}
+                    {/*    " */}
+                    {/* > */}
+                    {/* </div> */}
+                    {/* <LocaleSwitcher currentLocale={lang} /> */}
                 </div>
             </div>
         </>

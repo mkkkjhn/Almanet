@@ -5,14 +5,12 @@ import {
     isSignInWithEmailLink,
     signInWithEmailLink,
     GoogleAuthProvider,
-    FacebookAuthProvider,
     signInWithPopup
 } from 'firebase/auth';
 import Link from 'next/link';
 import { useRouter } from 'next-nprogress-bar';
 import { useContext, useEffect, useState } from 'react';
 import { AiOutlineSend } from 'react-icons/ai';
-import { FaFacebookSquare } from 'react-icons/fa';
 import { FcGoogle } from 'react-icons/fc';
 import { TbLoaderQuarter } from 'react-icons/tb';
 import Button from '@/components/ui/Button';
@@ -30,18 +28,18 @@ export const Form = ({ page }: dictionaryPageType) => {
     const privacyPolicyPath = '/about/privacy-policy';
 
     const googleProvider = new GoogleAuthProvider();
-    const fbProvider = new FacebookAuthProvider();
-    const signInViaFb = async () => {
-        setIsLoading(true);
-        signInWithPopup(auth, fbProvider)
-            .then(async (result) => {
-                const credential = GoogleAuthProvider.credentialFromResult(result);
-                setSignInMethod(credential?.signInMethod as string);
-                await router.push('/sign-up/second-step');
-            }).catch((error) => {
-                console.log(error);
-            });
-    };
+    // const fbProvider = new FacebookAuthProvider();
+    // const signInViaFb = async () => {
+    //     setIsLoading(true);
+    //     signInWithPopup(auth, fbProvider)
+    //         .then(async (result) => {
+    //             const credential = GoogleAuthProvider.credentialFromResult(result);
+    //             setSignInMethod(credential?.signInMethod as string);
+    //             await router.push('/sign-up/second-step');
+    //         }).catch((error) => {
+    //             console.log(error);
+    //         });
+    // };
     const signInViaGoogle = async () => {
         setIsLoading(true);
         signInWithPopup(auth, googleProvider)
@@ -150,16 +148,16 @@ export const Form = ({ page }: dictionaryPageType) => {
                                 px-12
                             "
                         >
-                            <div className="sm:mb-6">
-                                <Button
-                                    state={isLoading}
-                                    onClick={() => signInViaFb()}
-                                    type="button"
-                                    label={page.signUp.buttonFb}
-                                    color={'#4193EF'}
-                                    appendIcon={<FaFacebookSquare size={28} style={{ marginLeft: '4px' }} />}
-                                />
-                            </div>
+                            {/* <div className="sm:mb-6"> */}
+                            {/*    <Button */}
+                            {/*        state={isLoading} */}
+                            {/*        onClick={() => signInViaFb()} */}
+                            {/*        type="button" */}
+                            {/*        label={page.signUp.buttonFb} */}
+                            {/*        color={'#4193EF'} */}
+                            {/*        appendIcon={<FaFacebookSquare size={28} style={{ marginLeft: '4px' }} />} */}
+                            {/*    /> */}
+                            {/* </div> */}
                             <Button
                                 state={isLoading}
                                 onClick={() => signInViaGoogle()}
