@@ -143,6 +143,7 @@ export const Hero = ({ page }: dictionaryPageType) => {
                             relative
                             xl:min-h-[360px]
                             justify-between
+                            min-h-fit
                         "
                     >
                         <SwitchTransition>

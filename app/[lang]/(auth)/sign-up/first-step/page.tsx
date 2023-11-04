@@ -13,13 +13,14 @@ export default async function FirstStep({
         <>
             <div
                 className="
-                    h-full
                     xl:h-[calc(100vh-92px)]
+                    h-[calc(100vh-132px)]
                     w-screen
                     flex
                     justify-center
                     items-center
                     relative
+                    mx-4
                 "
             >
                 <Form page={page} />

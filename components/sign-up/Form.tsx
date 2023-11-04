@@ -47,6 +47,7 @@ export const Form = ({ page }: dictionaryPageType) => {
                 const credential = GoogleAuthProvider.credentialFromResult(result);
                 setSignInMethod(credential?.signInMethod as string);
                 await router.push('/sign-up/finally');
+                setIsLoading(false);
             }).catch((error) => {
                 console.log(error);
             });

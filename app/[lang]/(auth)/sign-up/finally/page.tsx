@@ -13,8 +13,8 @@ export default async function Finally({
         <>
             <div
                 className="
-                    h-full
                     xl:h-[calc(100vh-92px)]
+                    h-[calc(100vh-132px)]
                     w-screen
                     flex
                     justify-center

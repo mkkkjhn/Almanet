@@ -18,7 +18,9 @@ export default function Final({ page }: dictionaryPageType) {
                 flex-col
                 justify-center
                 items-center
-                w-[502px]
+                w-full
+                xl:w-[502px]
+                mx-4
             "
             >
                 <div
