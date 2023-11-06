@@ -8,7 +8,7 @@ import {
 } from 'react';
 import { FiArrowLeft, FiArrowRight } from 'react-icons/fi';
 import { SwitchTransition, CSSTransition } from 'react-transition-group';
-import { Navigation } from 'swiper/modules';
+import { Navigation, Autoplay } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import Button from '@/components/ui/Button';
 import { Context } from '@/context/Context';
@@ -95,7 +95,7 @@ export const Hero = ({ page }: dictionaryPageType) => {
     const nextButton = useRef(null);
 
     const handleChangeSwiper = (swiper: any) => {
-        if (swiper.activeIndex > swiper.previousIndex) {
+        if (swiper.activeIndex > swiper.previousIndex || (swiper.activeIndex === 0 && swiper.previousIndex === 4)) {
             incrementCurrentSlide();
         } else {
             decrementCurrentSlide();
@@ -241,14 +241,18 @@ export const Hero = ({ page }: dictionaryPageType) => {
                             </div>
                             <Swiper
                                 slidesPerView={1}
+                                autoplay={{
+                                    delay: 5000,
+                                    disableOnInteraction: true
+                                }}
                                 className="w-[calc(100vw-7rem)]"
                                 onSlideChange={(e) => handleChangeSwiper(e)}
                                 navigation={{
-                                    nextEl: prevButton.current,
-                                    prevEl: nextButton.current
+                                    nextEl: nextButton.current,
+                                    prevEl: prevButton.current
                                 }}
                                 modules={[
-                                    Navigation
+                                    Navigation, Autoplay
                                 ]}
                                 onBeforeInit={(swiper: any) => {
                                     // @ts-ignore
