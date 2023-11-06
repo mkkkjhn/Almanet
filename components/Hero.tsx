@@ -247,6 +247,10 @@ export const Hero = ({ page }: dictionaryPageType) => {
                                 }}
                                 className="w-[calc(100vw-7rem)]"
                                 onSlideChange={(e) => handleChangeSwiper(e)}
+                                navigation={{
+                                    prevEl: prevButton.current,
+                                    nextEl: nextButton.current
+                                }}
                                 modules={[
                                     Navigation, Autoplay
                                 ]}
