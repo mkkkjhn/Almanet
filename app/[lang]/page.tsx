@@ -19,11 +19,19 @@ export default async function Home({
                 w-screen
                 min-h-max
                 sm:justify-between
-                xl:h-[calc(100vh-92px)]
                 h-full
             "
         >
-            <Hero page={ page } />
+            <div
+                className="
+                    h-[calc(100%-32px)]
+                    flex
+                    justify-center
+                    items-center
+                "
+            >
+                <Hero page={ page } />
+            </div>
             <Controls />
         </div>
     );

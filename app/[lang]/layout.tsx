@@ -31,24 +31,50 @@ export default function RootLayout({
                 className="
                         flex
                         flex-col
-                        h-full
-                        xl:h-max
+                        min-h-full
+                        xl:h-auto
                     "
             >
                 <Provider>
-                    <header className="w-screen">
+                    <header
+                        className="
+                            w-screen
+                            h-[56px]
+                            relative
+                        "
+                    >
                         <Header />
                     </header>
-                    <main
+                    <div
                         className="
-                                h-full
-                            "
+                            flex
+                            flex-col
+                            justify-end
+                            items-center
+                            h-[calc(100%-56px)]
+                        "
                     >
-                        {children}
-                    </main>
-                    <footer className="w-screen">
-                        <Footer params={params} />
-                    </footer>
+                        <main
+                            className="
+                                xl:h-[calc(100vh-92px)]
+                                sm:h-[calc(100%-76px)]
+                                flex
+                                flex-col
+                                justify-center
+                            "
+                        >
+                            {children}
+                        </main>
+                        <footer
+                            className="
+                            w-screen
+                            sm:h-[36px]
+                            relative
+                        "
+                        >
+                            <Footer params={params} />
+                        </footer>
+                    </div>
                 </Provider>
             </body>
         </html>

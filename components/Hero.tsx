@@ -105,15 +105,14 @@ export const Hero = ({ page }: dictionaryPageType) => {
     return (
         <>
             <div
-                style={{ height: 'calc(100% - 32px)' }}
                 className="
                     w-full
                     h-full
+                    max-h-full
                     flex
                     items-center
                     xl:flex-row
                     flex-col
-                    min-h-max
                     sm:justify-center
                     xl:justify-normal
                 "
@@ -128,6 +127,7 @@ export const Hero = ({ page }: dictionaryPageType) => {
                         xl:mb-0
                         sm:mb-8
                         h-full
+                        xl:h-max
                         sm:h-auto
                     "
                 >
@@ -136,6 +136,7 @@ export const Hero = ({ page }: dictionaryPageType) => {
                             flex
                             flex-col
                             h-full
+                            xl:h-max
                             xl:text-start
                             text-center
                             xl:items-start
@@ -143,7 +144,6 @@ export const Hero = ({ page }: dictionaryPageType) => {
                             relative
                             xl:min-h-[360px]
                             justify-between
-                            min-h-fit
                         "
                     >
                         <SwitchTransition>
@@ -185,6 +185,7 @@ export const Hero = ({ page }: dictionaryPageType) => {
                                             text-sm
                                             font-normal
                                             sm:mb-14
+                                            min-h-[40px]
                                             mb-4
                                         "
                                     >
@@ -209,13 +210,13 @@ export const Hero = ({ page }: dictionaryPageType) => {
                             />
                         </div>
                         <div
-                            style={{ height: 'calc(100% - 298px)' }}
+                            style={{ height: 'calc(100% - 296px)' }}
                             className="
                                 flex
                                 items-center
                                 justify-between
                                 w-full
-                                min-h-[363px]
+                                min-h-[377px]
                                 sm:min-h-0
                                 relative
                                 max-w-full
@@ -235,6 +236,10 @@ export const Hero = ({ page }: dictionaryPageType) => {
                                     hover:opacity-80
                                     transition
                                     sm:hidden
+                                    absolute
+                                    top-1/2
+                                    -translate-y-1/2
+                                    left-0
                                 "
                             >
                                 <FiArrowLeft size={24} />
@@ -299,6 +304,10 @@ export const Hero = ({ page }: dictionaryPageType) => {
                                     hover:opacity-80
                                     transition
                                     sm:hidden
+                                    absolute
+                                    top-1/2
+                                    -translate-y-1/2
+                                    right-0
                                 "
                             >
                                 <FiArrowRight size={24} />
