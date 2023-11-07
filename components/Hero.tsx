@@ -247,7 +247,7 @@ export const Hero = ({ page }: dictionaryPageType) => {
                             </div>
                             <Swiper
                                 slidesPerView={1}
-                                className="w-[calc(100vw-7rem)]"
+                                className="w-[calc(100vw-7rem)] z-0"
                                 onSlideChange={(e) => handleChangeSwiper(e)}
                                 navigation={{
                                     prevEl: prevButton.current,
