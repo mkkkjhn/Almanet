@@ -237,6 +237,7 @@ export const Hero = ({ page }: dictionaryPageType) => {
                                     transition
                                     sm:hidden
                                     absolute
+                                    z-10
                                     top-1/2
                                     -translate-y-1/2
                                     left-0
@@ -305,6 +306,7 @@ export const Hero = ({ page }: dictionaryPageType) => {
                                     transition
                                     sm:hidden
                                     absolute
+                                    z-10
                                     top-1/2
                                     -translate-y-1/2
                                     right-0
