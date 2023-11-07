@@ -237,7 +237,7 @@ export const Hero = ({ page }: dictionaryPageType) => {
                                     transition
                                     sm:hidden
                                     absolute
-                                    z-10
+                                    z-[1000]
                                     top-1/2
                                     -translate-y-1/2
                                     left-0
@@ -247,10 +247,6 @@ export const Hero = ({ page }: dictionaryPageType) => {
                             </div>
                             <Swiper
                                 slidesPerView={1}
-                                autoplay={{
-                                    delay: 5000,
-                                    disableOnInteraction: true
-                                }}
                                 className="w-[calc(100vw-7rem)]"
                                 onSlideChange={(e) => handleChangeSwiper(e)}
                                 navigation={{
@@ -306,7 +302,7 @@ export const Hero = ({ page }: dictionaryPageType) => {
                                     transition
                                     sm:hidden
                                     absolute
-                                    z-10
+                                    z-[1000]
                                     top-1/2
                                     -translate-y-1/2
                                     right-0
