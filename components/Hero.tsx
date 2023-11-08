@@ -300,12 +300,11 @@ export const Hero = ({ page }: dictionaryPageType) => {
                                                 block
                                                 mx-auto
                                                 sm:hidden
-                                                h-full
                                                 w-auto
                                                 border-[7px]
                                                 border-slide-gray
                                                 rounded-[14px]
-                                                min-h-[363px]
+                                                h-[363px]
                                             "
                                         />
                                     </SwiperSlide>
