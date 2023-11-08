@@ -116,6 +116,7 @@ export const Controls = () => {
                 >
                     <div
                         style={{ opacity: currentSlide === 1 ? '.3' : '', cursor: currentSlide === 1 ? 'unset' : 'pointer' }}
+                        onClick={() => swiper.autoplay.pause()}
                         aria-disabled={currentSlide === 1}
                         className="
                             h-10
