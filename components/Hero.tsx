@@ -246,35 +246,36 @@ export const Hero = ({ page }: dictionaryPageType) => {
                             >
                                 <FiArrowLeft size={24} />
                             </div>
-                            <Swiper
-                                slidesPerView={1}
-                                className="w-[calc(100vw-7rem)] z-10 relative"
-                                onSlideChange={(e) => handleChangeSwiper(e)}
-                                navigation={{
-                                    prevEl: prevButton.current,
-                                    nextEl: nextButton.current
-                                }}
-                                modules={[
-                                    Navigation, Autoplay
-                                ]}
-                                onBeforeInit={(swiper: any) => {
-                                    console.log(prevButton, nextButton);
-                                    // @ts-ignore
-                                    // eslint-disable-next-line no-param-reassign
-                                    swiper.params.navigation.prevEl = prevButton.current;
-                                    // @ts-ignore
-                                    // eslint-disable-next-line no-param-reassign
-                                    swiper.params.navigation.nextEl = nextButton.current;
-                                }}
-                                initialSlide={currentSlide - 1}
-                            >
-                                {slidesMob.map((slide, index) => (
-                                    <SwiperSlide key={`image_wrapper_${index}`}>
-                                        <Image
-                                            key={`image_${index}`}
-                                            src={slide}
-                                            alt="Mobile version"
-                                            className="
+                            {(prevButton.current && nextButton.current) && (
+                                <Swiper
+                                    slidesPerView={1}
+                                    className="w-[calc(100vw-7rem)] z-10 relative"
+                                    onSlideChange={(e) => handleChangeSwiper(e)}
+                                    navigation={{
+                                        prevEl: prevButton.current,
+                                        nextEl: nextButton.current
+                                    }}
+                                    modules={[
+                                        Navigation, Autoplay
+                                    ]}
+                                    onBeforeInit={(swiper: any) => {
+                                        console.log(prevButton, nextButton);
+                                        // @ts-ignore
+                                        // eslint-disable-next-line no-param-reassign
+                                        swiper.params.navigation.prevEl = prevButton.current;
+                                        // @ts-ignore
+                                        // eslint-disable-next-line no-param-reassign
+                                        swiper.params.navigation.nextEl = nextButton.current;
+                                    }}
+                                    initialSlide={currentSlide - 1}
+                                >
+                                    {slidesMob.map((slide, index) => (
+                                        <SwiperSlide key={`image_wrapper_${index}`}>
+                                            <Image
+                                                key={`image_${index}`}
+                                                src={slide}
+                                                alt="Mobile version"
+                                                className="
                                                 block
                                                 mx-auto
                                                 sm:hidden
@@ -285,10 +286,11 @@ export const Hero = ({ page }: dictionaryPageType) => {
                                                 rounded-[14px]
                                                 min-h-[363px]
                                             "
-                                        />
-                                    </SwiperSlide>
-                                ))}
-                            </Swiper>
+                                            />
+                                        </SwiperSlide>
+                                    ))}
+                                </Swiper>
+                            )}
                             <div
                                 style={{ opacity: currentSlide === 5 ? '.3' : '', cursor: currentSlide === 5 ? 'unset' : 'pointer' }}
                                 aria-disabled={currentSlide === 5}
