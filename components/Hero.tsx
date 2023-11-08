@@ -220,6 +220,7 @@ export const Hero = ({ page }: dictionaryPageType) => {
                                 sm:min-h-0
                                 relative
                                 max-w-full
+                                z-10
                             "
                         >
                             <div
@@ -247,7 +248,7 @@ export const Hero = ({ page }: dictionaryPageType) => {
                             </div>
                             <Swiper
                                 slidesPerView={1}
-                                className="w-[calc(100vw-7rem)] z-0"
+                                className="w-[calc(100vw-7rem)] z-10 relative"
                                 onSlideChange={(e) => handleChangeSwiper(e)}
                                 navigation={{
                                     prevEl: prevButton.current,
@@ -290,6 +291,7 @@ export const Hero = ({ page }: dictionaryPageType) => {
                             <div
                                 style={{ opacity: currentSlide === 5 ? '.3' : '', cursor: currentSlide === 5 ? 'unset' : 'pointer' }}
                                 aria-disabled={currentSlide === 5}
+                                onClick={() => console.log('123123')}
                                 ref={nextButton}
                                 className="
                                     h-10
