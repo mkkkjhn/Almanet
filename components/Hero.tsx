@@ -32,7 +32,7 @@ export const Hero = ({ page }: dictionaryPageType) => {
     const [dynamicKeyValue, setDynamicKeyValue] = useState(1);
     const [innerWidthOld, setInnerWidthOld] = useState(0);
     const context = useContext(Context);
-    const { currentSlide } = context;
+    const { currentSlide, setSwiper } = context;
     useEffect(() => {
         setInnerWidthOld(window.innerWidth);
     }, []);
@@ -273,9 +273,14 @@ export const Hero = ({ page }: dictionaryPageType) => {
                                 slidesPerView={1}
                                 className="w-[calc(100vw-7rem)] z-10 relative"
                                 onSlideChange={(e) => handleChangeSwiper(e)}
+                                onSwiper={(instance) => setSwiper(instance)}
                                 navigation={{
                                     prevEl: prevButton.current,
                                     nextEl: nextButton.current
+                                }}
+                                autoplay={{
+                                    delay: 5000,
+                                    disableOnInteraction: true
                                 }}
                                 modules={[
                                     Navigation, Autoplay

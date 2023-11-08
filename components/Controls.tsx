@@ -8,7 +8,7 @@ import { useControlSlides } from '@/hooks/useControlSlides';
 
 export const Controls = () => {
     const context = useContext(Context);
-    const { currentSlide } = context;
+    const { currentSlide, swiper } = context;
     const { incrementCurrentSlide, decrementCurrentSlide } = useControlSlides();
 
     return (
@@ -132,6 +132,7 @@ export const Controls = () => {
                     </div>
                     <div
                         style={{ opacity: currentSlide === 5 ? '.3' : '', cursor: currentSlide === 5 ? 'unset' : 'pointer' }}
+                        onClick={() => swiper.autoplay.pause()}
                         aria-disabled={currentSlide === 5}
                         className="
                             h-10
