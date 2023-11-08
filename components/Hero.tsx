@@ -258,6 +258,7 @@ export const Hero = ({ page }: dictionaryPageType) => {
                                     Navigation, Autoplay
                                 ]}
                                 onBeforeInit={(swiper: any) => {
+                                    console.log(prevButton, nextButton);
                                     // @ts-ignore
                                     // eslint-disable-next-line no-param-reassign
                                     swiper.params.navigation.prevEl = prevButton.current;
