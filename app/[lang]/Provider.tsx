@@ -13,6 +13,7 @@ const Provider: React.FC<MyProviderProps> = ({ children }) => {
     const [isLoading, setIsLoading] = useState(false);
     const [signInMethod, setSignInMethod] = useState('');
     const [swiper, setSwiper] = useState(null);
+    const [emailForSignIn, setEmailForSignIn] = useState('');
 
     return (
         <Context.Provider value={{
@@ -23,7 +24,9 @@ const Provider: React.FC<MyProviderProps> = ({ children }) => {
             signInMethod,
             setSignInMethod,
             swiper,
-            setSwiper
+            setSwiper,
+            emailForSignIn,
+            setEmailForSignIn
         }}>
             <ProgressBar
                 height="4px"

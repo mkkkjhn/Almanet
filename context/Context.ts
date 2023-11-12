@@ -9,6 +9,8 @@ interface ContextType {
     setSignInMethod: (signInMethod: string) => void
     swiper: any,
     setSwiper: (swiper: any) => void
+    emailForSignIn: string,
+    setEmailForSignIn: (emailForSignIn: string) => void
 }
 const defaultState = {
     currentSlide: 1,
@@ -18,6 +20,8 @@ const defaultState = {
     signInMethod: 'google.com',
     setSignInMethod: () => null,
     swiper: null,
-    setSwiper: () => null
+    setSwiper: () => null,
+    emailForSignIn: '',
+    setEmailForSignIn: () => null
 };
 export const Context = createContext<ContextType>(defaultState);

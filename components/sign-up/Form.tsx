@@ -1,11 +1,10 @@
 'use client';
 
+import axios from 'axios';
 import {
     sendSignInLinkToEmail,
-    isSignInWithEmailLink,
-    signInWithEmailLink,
     GoogleAuthProvider,
-    signInWithPopup
+    signInWithPopup, isSignInWithEmailLink, signInWithEmailLink
 } from 'firebase/auth';
 import Link from 'next/link';
 import { useRouter } from 'next-nprogress-bar';
@@ -24,8 +23,53 @@ export const Form = ({ page }: dictionaryPageType) => {
     const [isEmailSent, setIsEmailSent] = useState(false);
     const router = useRouter();
     const context = useContext(Context);
-    const { setSignInMethod, isLoading, setIsLoading } = context;
+    const {
+        setSignInMethod, isLoading, setIsLoading
+    } = context;
     const privacyPolicyPath = '/about/privacy-policy';
+    const subject = 'Welcome to Almanet – Your Gateway to the Seychelles Community!';
+    const body = 'Dear Сustomer,\n'
+        + '\n'
+        + 'Warmest greetings and welcome to Almanet! We are sincerely grateful for your registration and thrilled to welcome you to our growing Seychelles community.\n'
+        + '\n'
+        // eslint-disable-next-line max-len
+        + 'We are excited to announce that the official release of our application is set for early December 2023. You will be among the first to receive an exclusive link to access the platform and the opportunity to fill out your profile.\n'
+        + '\n'
+        + 'Additionally, we plan to host a "Secret Santa" event as part of our festive celebrations to unite our community and spread the joy of connection.\n'
+        + '\n'
+        // eslint-disable-next-line max-len
+        + 'Please note that the Almanet platform is completely free for all participants. Our mission is to unite the Seychelles community, support socially significant projects, and facilitate business development in the Seychelles.\n'
+        + '\n'
+        + 'Here is a brief overview of what awaits you on the Almanet platform:\n'
+        + '\n'
+        + 'Discover Almanet! – Experience Seychelles\' first social platform, engage in events, and use our message board to live and conduct business on the islands.\n'
+        + '\n'
+        + 'Your Almanet News Feed – Discover a space where local stories and service reviews are accessible to everyone in Seychelles.\n'
+        + '\n'
+        + 'Your CreoleTrade at Almanet – Buy and sell anything through our local bulletin board, from used cars to apartment rentals, with convenience and simplicity.\n'
+        + '\n'
+        + 'Seychelles Life in Reports – Share unique Seychelles moments from your perspective, capturing and narrating your exciting experiences and events.\n'
+        + '\n'
+        + 'Opportunities for Partners – Post a review or reportage of your event, commissioned by the Almanet team, and advertise your business on our platform profitably.\n'
+        + '\n'
+        + 'We look forward to the opportunity to meet you and see how you engage with our community. Don\'t forget to follow our updates on Facebook and Instagram!\n'
+        + '\n'
+        + 'Warm regards,\n'
+        + 'Almanet Team\n';
+
+    const sendEmail = async (userEmail: string) => {
+        const response = await axios.post('/api/send-email', {
+            userEmail,
+            subject,
+            body
+        });
+
+        if (response.status === 200) {
+            // Письмо отправлено успешно
+        } else {
+            // Произошла ошибка
+        }
+    };
 
     const googleProvider = new GoogleAuthProvider();
     // const fbProvider = new FacebookAuthProvider();
@@ -40,12 +84,19 @@ export const Form = ({ page }: dictionaryPageType) => {
     //             console.log(error);
     //         });
     // };
+
     const signInViaGoogle = async () => {
         setIsLoading(true);
         signInWithPopup(auth, googleProvider)
             .then(async (result) => {
                 const credential = GoogleAuthProvider.credentialFromResult(result);
                 setSignInMethod(credential?.signInMethod as string);
+                const user = auth.currentUser;
+                try {
+                    await sendEmail(user?.email as string);
+                } catch (e) {
+                    console.log(e);
+                }
                 await router.push('/sign-up/finally');
                 setIsLoading(false);
             }).catch((error) => {
@@ -53,15 +104,14 @@ export const Form = ({ page }: dictionaryPageType) => {
             });
     };
 
-    const actionCodeSettings = {
-        url: 'http://localhost:3000/en/sign-up/first-step',
+    const actionCodeSettings = (userEmail: string) => ({
+        url: `http://localhost:3000/en/sign-up/first-step?email=${userEmail}`,
         handleCodeInApp: true
-    };
+    });
     const signInViaEmail = () => {
         setIsLoading(true);
-        sendSignInLinkToEmail(auth, email, actionCodeSettings)
+        sendSignInLinkToEmail(auth, email, actionCodeSettings(email))
             .then(() => {
-                window.localStorage.setItem('emailForSignIn', email);
                 setIsLoading(false);
                 setIsEmailSent(true);
             })
@@ -73,16 +123,25 @@ export const Form = ({ page }: dictionaryPageType) => {
     useEffect(() => {
         if (isSignInWithEmailLink(auth, window.location.href)) {
             setIsLoading(true);
-            const useEmail = window.localStorage.getItem('emailForSignIn');
-            signInWithEmailLink(auth, useEmail as string, window.location.href)
-                .then(() => {
-                    window.localStorage.removeItem('emailForSignIn');
-                    router.push('/sign-up/second-step');
-                    setIsLoading(false);
-                })
-                .catch((error) => {
-                    console.log(error);
-                });
+            const queryParameters = new URLSearchParams(window.location.search);
+            const useEmail = queryParameters.get('email');
+            if (useEmail) {
+                signInWithEmailLink(auth, useEmail as string, window.location.href)
+                    .then(async () => {
+                        try {
+                            await sendEmail(useEmail);
+                        } catch (e) {
+                            console.log(e);
+                        }
+                        router.push('/sign-up/finally');
+                        setIsLoading(false);
+                    })
+                    .catch((error) => {
+                        console.log(error);
+                    });
+            } else {
+                setIsLoading(false);
+            }
         }
     });
 
@@ -183,17 +242,19 @@ export const Form = ({ page }: dictionaryPageType) => {
                                 px-12
                             "
                         >
-                            <Input
-                                id="email"
-                                onChange={(event: any) => setEmail(event.target.value)}
-                                value={email}
-                                label={page.signUp.emailPlaceholder}
-                                type="email"
-                            />
-                            { email.length ? (
-                                <div
-                                    onClick={() => signInViaEmail()}
-                                    className="
+                            {!isLoading ? (
+                                <>
+                                    <Input
+                                        id="email"
+                                        onChange={(event: any) => setEmail(event.target.value)}
+                                        value={email}
+                                        label={page.signUp.emailPlaceholder}
+                                        type="email"
+                                    />
+                                    { email.length ? (
+                                        <div
+                                            onClick={() => signInViaEmail()}
+                                            className="
                                         cursor-pointer
                                         bg-green
                                         w-8
@@ -209,14 +270,18 @@ export const Form = ({ page }: dictionaryPageType) => {
                                         right-0
                                         transition
                                     "
-                                >
-                                    {!isLoading ? (
-                                        <AiOutlineSend size={24} />
-                                    ) : (
-                                        <TbLoaderQuarter size={24} className="animate-spin" />
-                                    )}
-                                </div>
-                            ) : ''}
+                                        >
+                                            {!isLoading ? (
+                                                <AiOutlineSend size={24} />
+                                            ) : (
+                                                <TbLoaderQuarter size={24} className="animate-spin" />
+                                            )}
+                                        </div>
+                                    ) : ''}
+                                </>
+                            ) : (
+                                <TbLoaderQuarter size={24} className="animate-spin mx-auto" />
+                            )}
                         </div>
                         <p>
                             {page.signUp.disclaimer}
