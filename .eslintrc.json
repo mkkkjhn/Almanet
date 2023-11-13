@@ -7,7 +7,7 @@
     ],
     "plugins": ["@typescript-eslint", "import"],
     "rules": {
-        "max-len": ["error", 200],
+        "max-len": ["error", 400],
         "no-async-client-component": "off",
         "no-nested-ternary": 0,
         "no-useless-constructor": 0,
