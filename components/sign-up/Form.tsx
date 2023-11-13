@@ -28,36 +28,11 @@ export const Form = ({ page }: dictionaryPageType) => {
     } = context;
     const privacyPolicyPath = '/about/privacy-policy';
     const subject = 'Welcome to Almanet – Your Gateway to the Seychelles Community!';
-    const body = `
-            <p>Warmest greetings and welcome to Almanet! We are sincerely grateful for your registration and thrilled to welcome you to our growing Seychelles community.</p>
-            <br>
-            <p>We are excited to announce that the official release of our application is set for early December 2023. You will be among the first to receive an exclusive link to access the platform and the opportunity to fill out your profile.</p>
-            <br>
-            <p>Please note that the Almanet platform is completely free for all participants. Our mission is to unite the Seychelles community, support socially significant projects, and facilitate business development in the Seychelles.</p>
-            <br>
-            <p>Here is a brief overview of what awaits you on the Almanet platform:</p>
-            <br>
-            <p>Discover Almanet! – Experience Seychelles' first social platform, engage in events, and use our message board to live and conduct business on the islands.</p>
-            <br>
-            <p>Your Almanet News Feed – Discover a space where local stories and service reviews are accessible to everyone in Seychelles.</p>
-            <br>
-            <p>Your CreoleTrade at Almanet – Buy and sell anything through our local bulletin board, from used cars to apartment rentals, with convenience and simplicity.</p>
-            <br>
-            <p>Seychelles Life in Reports – Share unique Seychelles moments from your perspective, capturing and narrating your exciting experiences and events.</p>
-            <br>
-            <p>Opportunities for Partners – Post a review or reportage of your event, commissioned by the Almanet team, and advertise your business on our platform profitably.</p>
-            <br>
-            <p>We look forward to the opportunity to meet you and see how you engage with our community. Don't forget to follow our updates on <a href="https://www.facebook.com/almanet.sc/">Facebook</a> and <a href="https://instagram.com/almanet.sc?igshid=MzMyNGUyNmU2YQ==">Instagram</a>!</p>
-            <br>
-            <p>Warm regards,</p>
-            <p>Almanet Team</p>
-        `;
 
     const sendEmail = async (userEmail: string) => {
         const response = await axios.post('/api/send-email', {
             userEmail,
-            subject,
-            body
+            subject
         });
 
         if (response.status === 200) {
