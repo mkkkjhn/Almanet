@@ -35,8 +35,6 @@ export const Form = ({ page }: dictionaryPageType) => {
         // eslint-disable-next-line max-len
         + 'We are excited to announce that the official release of our application is set for early December 2023. You will be among the first to receive an exclusive link to access the platform and the opportunity to fill out your profile.\n'
         + '\n'
-        + 'Additionally, we plan to host a "Secret Santa" event as part of our festive celebrations to unite our community and spread the joy of connection.\n'
-        + '\n'
         // eslint-disable-next-line max-len
         + 'Please note that the Almanet platform is completely free for all participants. Our mission is to unite the Seychelles community, support socially significant projects, and facilitate business development in the Seychelles.\n'
         + '\n'
@@ -52,7 +50,8 @@ export const Form = ({ page }: dictionaryPageType) => {
         + '\n'
         + 'Opportunities for Partners – Post a review or reportage of your event, commissioned by the Almanet team, and advertise your business on our platform profitably.\n'
         + '\n'
-        + 'We look forward to the opportunity to meet you and see how you engage with our community. Don\'t forget to follow our updates on Facebook and Instagram!\n'
+        // eslint-disable-next-line max-len
+        + 'We look forward to the opportunity to meet you and see how you engage with our community. Don\'t forget to follow our updates on <a href="https://www.facebook.com/almanet.sc/">Facebook</a> and <a href="https://instagram.com/almanet.sc?igshid=MzMyNGUyNmU2YQ==">Instagram</a>!\n'
         + '\n'
         + 'Warm regards,\n'
         + 'Almanet Team\n';
