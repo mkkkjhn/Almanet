@@ -81,7 +81,6 @@ export const Form = ({ page }: dictionaryPageType) => {
         handleCodeInApp: true
     });
     const signInViaEmail = () => {
-        console.log(actionCodeSettings(email));
         setIsLoading(true);
         sendSignInLinkToEmail(auth, email, actionCodeSettings(email))
             .then(() => {
