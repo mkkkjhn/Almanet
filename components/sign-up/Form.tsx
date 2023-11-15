@@ -77,10 +77,11 @@ export const Form = ({ page }: dictionaryPageType) => {
     };
 
     const actionCodeSettings = (userEmail: string) => ({
-        url: `${process.env.EMAIL_REGESTRATION_REDIRECT_URL}?email=${userEmail}`,
+        url: `${process.env.NEXT_PUBLIC_EMAIL_REGISTRATION_REDIRECT_URL}?email=${userEmail}`,
         handleCodeInApp: true
     });
     const signInViaEmail = () => {
+        console.log(actionCodeSettings(email));
         setIsLoading(true);
         sendSignInLinkToEmail(auth, email, actionCodeSettings(email))
             .then(() => {
