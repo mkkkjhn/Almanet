@@ -1,35 +1,28 @@
 'use client';
 
-import { useRouter } from 'next-nprogress-bar';
-import { FaFacebookSquare, FaInstagram } from 'react-icons/fa';
-import Button from '@/components/ui/Button';
 import type { dictionaryPageType } from '@/types';
 
 export default function Final({ page }: dictionaryPageType) {
-    const fbLink = 'https://www.facebook.com/almanet.sc/';
-    const instagramLink = 'https://instagram.com/almanet.sc?igshid=MzMyNGUyNmU2YQ==';
-    const router = useRouter();
-
     return (
         <>
             <div
                 className="
-                flex
-                flex-col
-                justify-center
-                items-center
-                w-full
-                xl:w-[502px]
-                mx-4
-            "
+                    flex
+                    flex-col
+                    justify-center
+                    items-center
+                    w-full
+                    xl:w-[502px]
+                    mx-4
+                "
             >
                 <div
                     className="
-                    sm:mb-6
-                    flex
-                    flex-col
-                    items-center
-                "
+                        sm:mb-6
+                        flex
+                        flex-col
+                        items-center
+                    "
                 >
                     <h1
                         className="
@@ -40,6 +33,7 @@ export default function Final({ page }: dictionaryPageType) {
                             font-extrabold
                             mb-6
                             text-center
+                            break-normal
                         "
                     >
                         {page.signUpFinal.title}
@@ -55,44 +49,6 @@ export default function Final({ page }: dictionaryPageType) {
                     >
                         {page.signUpFinal.description}
                     </p>
-                </div>
-                <div
-                    className="
-                    flex
-                    flex-col
-                    items-center
-                    w-full
-                "
-                >
-                    <div
-                        style={{ height: 'calc(100% + 24px)' }}
-                        className="
-                            flex
-                            flex-col
-                            justify-between
-                            mb-9
-                            px-12
-                        "
-                    >
-                        <div className="sm:mb-6">
-                            <Button
-                                state={false}
-                                onClick={() => router.push(fbLink, '_blank')}
-                                type="button"
-                                label={page.signUpFinal.followFbButton}
-                                color={'#4193EF'}
-                                appendIcon={<FaFacebookSquare size={28} style={{ marginLeft: '4px' }} />}
-                            />
-                        </div>
-                        <Button
-                            state={false}
-                            onClick={() => router.push(instagramLink, '_blank')}
-                            type="button"
-                            label={page.signUpFinal.followIgButton}
-                            color={'#BF5FC1'}
-                            appendIcon={<FaInstagram size={28} style={{ marginLeft: '4px' }} />}
-                        />
-                    </div>
                 </div>
             </div>
         </>
