@@ -1,5 +1,6 @@
 'use client';
 
+import * as process from 'process';
 import axios from 'axios';
 import {
     sendSignInLinkToEmail,
@@ -76,7 +77,7 @@ export const Form = ({ page }: dictionaryPageType) => {
     };
 
     const actionCodeSettings = (userEmail: string) => ({
-        url: `http://localhost:3000/en/sign-up/first-step?email=${userEmail}`,
+        url: `${process.env.EMAIL_REGESTRATION_REDIRECT_URL}?email=${userEmail}`,
         handleCodeInApp: true
     });
     const signInViaEmail = () => {
