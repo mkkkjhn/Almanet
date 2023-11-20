@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 // eslint-disable-next-line camelcase
 import { Open_Sans } from 'next/font/google';
 import './globals.scss';
+import GoogleAnalytics from '@/app/[lang]/GoogleAnalytics';
 import Provider from '@/app/[lang]/Provider';
 import Footer from '@/components/common/Footer';
 import Header from '@/components/common/Header';
@@ -77,6 +78,7 @@ export default function RootLayout({
                     </div>
                 </Provider>
             </body>
+            <GoogleAnalytics />
         </html>
     );
 }
