@@ -65,6 +65,7 @@ export default function RootLayout({
                             "
                         >
                             {children}
+                            <GoogleAnalytics />
                         </main>
                         <footer
                             className="
@@ -78,7 +79,6 @@ export default function RootLayout({
                     </div>
                 </Provider>
             </body>
-            <GoogleAnalytics />
         </html>
     );
 }
